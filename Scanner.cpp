@@ -18,13 +18,11 @@ class Scanner{
         }
 
         Token SCANNER(){
-            Token tk;
             DFA dfa;
             char actualChar;
             std::string lexem;
-            
-            tk.column = column;
-            tk.line = line;
+            int initialLine = line;
+            int initialColumn = column;
 
             // Loop to read characters until get a token or error
             while(true){
@@ -45,15 +43,11 @@ class Scanner{
                 if (actualChar != '\n' and actualChar != '\r' and actualChar != '\t' and actualChar != ' ')
                     lexem += actualChar;
             }
-
-            tk.lex = lexem;
-            tk.lex_class = dfa.getStateClass();
-            tk.type = "";
-
+            
             if (actualChar == -1)
                 archive.close();
 
-            return tk;
+            return Token(lexem, dfa.getStateClass(), "", initialLine, initialColumn);
         }
 
     private:

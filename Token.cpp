@@ -1,10 +1,21 @@
 #pragma once
 #include <string>
 
-typedef struct Token{
-    std::string lex;
-    std::string lex_class;
-    std::string type;
-    int line;
-    int column;
-} Token;
+class Token{
+    public:
+        std::string lex;
+        std::string lex_class;
+        std::string type;
+        int line;
+        int column;
+
+        Token(std::string lex, std::string lex_class, std::string type, int line, int column){
+            this->lex = lex;
+            this->lex_class = lex_class;
+            this->type = type;
+            this->line = line;
+            this->column = column;
+        }
+
+        
+};
