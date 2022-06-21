@@ -72,11 +72,22 @@ class Scanner{
             if(stateclass=="Id")
             {
                 if(!table->haveSymbol(lexem))
-                    table->putSymbol(Token(lexem, stateclass, "NULL", initialLine, initialColumn));
+                    if (state == 1 or state == 19 or state == 27) // Real number, put type in the token
+                        table->putSymbol(Token(lexem, stateclass, "Real", initialLine, initialColumn));
+                    else if (state == 17 or state == 25 or state == 26) // Int number, put type in the token
+                        table->putSymbol(Token(lexem, stateclass, "Int", initialLine, initialColumn));
+                    else // No type
+                        table->putSymbol(Token(lexem, stateclass, "", initialLine, initialColumn));
                 return table->getSymbol(lexem);
 
             }
-            return Token(lexem, stateclass, "", initialLine, initialColumn);
+
+            if (state == 1 or state == 19 or state == 27) // Real number, put type in the token
+                return Token(lexem, stateclass, "Real", initialLine, initialColumn);
+            else if (state == 17 or state == 25 or state == 26) // Int number, put type in the token
+                return Token(lexem, stateclass, "Int", initialLine, initialColumn);
+            else // No type
+                return Token(lexem, stateclass, "", initialLine, initialColumn);
         }
 
     private:

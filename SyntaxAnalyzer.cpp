@@ -14,7 +14,7 @@ int main(int argc, char** argv){
         i++;
         std::cout << tk.lex << "\n"
         << "Class: " << tk.lex_class << "\n"
-        //<< "Type: "<< tk.type << "\n"
+        << "Type: "<< tk.type << "\n"
         << "At line "<< tk.line << ", column " << tk.column << '\n'
         << '\n';
         // std::cin>>mov;
