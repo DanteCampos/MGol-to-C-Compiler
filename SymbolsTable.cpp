@@ -3,9 +3,10 @@
 #include <string>
 #include <vector>
 #include "Token.cpp"
-
+#include <iostream>
 class SymbolsTable{
-    std::unordered_map<std::string, std::string, std::string> table;
+    private:
+        std::unordered_map<std::string, Token> table;
 
     public:
         SymbolsTable(){
@@ -24,17 +25,52 @@ class SymbolsTable{
             reservedWords.push_back(Token("inteiro", "inteiro", "", 0, 0));
             reservedWords.push_back(Token("literal", "literal", "", 0, 0));
             reservedWords.push_back(Token("real", "real", "", 0, 0));
+            for(auto c:reservedWords)
+                table[c.lex]=c;
         }
-
+        ~SymbolsTable(){}
+        bool haveSymbol(std::string lex)
+        {
+            return table.find(lex)!=table.end();
+        }
         bool putSymbol(Token tk){
-
+            if(table.find(tk.lex)==table.end())
+            {
+                table[tk.lex]=tk;
+                return 1;
+            }else
+            {
+                std::cout<<"ERRO NAO TEM TOKEN UPT\n";
+                return 0;
+            }
         }
 
         bool updateSymbol(Token tk){
+            if(table.find(tk.lex)!=table.end())
+            {
+                table[tk.lex]=tk;
+                return 1;
+            }else
+            {
+                std::cout<<"ERRO NAO TEM TOKEN UPT\n";
+                return 0;
+            }
+        }
 
+        void show()
+        {
+            for(auto c:table)
+                    std::cout<<c.first<<"\n";
         }
 
         Token getSymbol(std::string lex){
-
+            if(table.find(lex)==table.end())
+            {
+                std::cout<<"ERRO NAO TEM TOKEN GETS "<<lex<<"\n";
+                show();
+                exit(1);
+            }
+            return table[lex];
+            
         }
 };

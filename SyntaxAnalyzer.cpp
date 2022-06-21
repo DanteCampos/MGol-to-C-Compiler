@@ -1,10 +1,13 @@
 #include <string>
 #include "Scanner.cpp"
+#include "SymbolsTable.cpp"
 
 int main(int argc, char** argv){
-    Scanner scanner(argv[1]);
+    SymbolsTable table;
+    Scanner scanner(argv[1],&table);
     Token tk;
     int i = 1;
+    char mov;
     while (scanner.isOpen()){
         tk = scanner.SCANNER();
         std::cout << "TOKEN " << i << '\n';
@@ -14,7 +17,8 @@ int main(int argc, char** argv){
         //<< "Type: "<< tk.type << "\n"
         << "At line "<< tk.line << ", column " << tk.column << '\n'
         << '\n';
+        // std::cin>>mov;
     }
-    
+    table.show();
     return 0;
 }
