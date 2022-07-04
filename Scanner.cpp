@@ -12,46 +12,49 @@ class Scanner{
             archive.open(filePath);
             line = 0;
             column = 0;
-            last=-1;
+            havelast=false;
             table=Syntaxtable;
         }
 
         bool isOpen(){
+            if(havelast)
+                return true;
             return archive.is_open();
         }
 
         Token SCANNER(){
             DFA dfa;
-            char actualChar,fc=0;
+            char actualChar,firstChar=0;
             std::string lexem;
             int initialLine,initialColumn;
             int state=0,inittoken=0;
             // Loop to read characters until get a token or error
             while(true){
-                if(last==-1){
+                if(!havelast){
                     actualChar = archive.get();
                 }else
                 {
-                    actualChar = (char)last;
-                    last=-1;
+                    actualChar = last;
+                    havelast=false;
                 }
 
                 int symbol = dfa.getSymbol(actualChar);
                 int newState = dfa.transition(state,symbol);
                 if(newState==-1){
+                    havelast=true;
                     last=actualChar;
                     break;
                 }
                 
                 state=newState;
                 if ((actualChar != '\n' and actualChar != '\r' and actualChar != '\t' and actualChar != ' ') ||
-                    (actualChar != '\n' and actualChar != '\r' and actualChar != '\t' and fc == '\"')){
+                    (actualChar != '\n' and actualChar != '\r' and actualChar != '\t' and firstChar == '\"')){
                     if(!inittoken)
                     {
                         initialLine = line;
                         initialColumn = column;
                         inittoken=1;
-                        fc=actualChar;
+                        firstChar=actualChar;
                     }
                     lexem += actualChar;
                 }
@@ -62,22 +65,30 @@ class Scanner{
                     column = 0;
                 }
             }
-            
-            if (actualChar == -1){
+            std::string stateclass=dfa.getStateClass(state);
+            if(stateclass=="EOF"){
+                havelast=false;
+                lexem=stateclass;
                 archive.close();
             }
-            std::string stateclass=dfa.getStateClass(state);
+            if(stateclass == "ERROR"){
+                havelast=false;                
+                if(actualChar==-1)
+                {
+                    lexem="NULL";   
+                    return Token(lexem, stateclass, "ERL2", line, column++);             
+                }else
+                {
+                    lexem = actualChar;
+                    return Token(lexem, stateclass, "ERL1", line, column++);
+                } 
+            }
             if(stateclass=="Comment")
                 return SCANNER();
             if(stateclass=="Id")
             {
                 if(!table->haveSymbol(lexem))
-                    if (state == 1 or state == 19 or state == 27) // Real number, put type in the token
-                        table->putSymbol(Token(lexem, stateclass, "Real", initialLine, initialColumn));
-                    else if (state == 17 or state == 25 or state == 26) // Int number, put type in the token
-                        table->putSymbol(Token(lexem, stateclass, "Int", initialLine, initialColumn));
-                    else // No type
-                        table->putSymbol(Token(lexem, stateclass, "", initialLine, initialColumn));
+                        table->putSymbol(Token(lexem, stateclass, "NULL", initialLine, initialColumn));
                 return table->getSymbol(lexem);
 
             }
@@ -87,14 +98,15 @@ class Scanner{
             else if (state == 17 or state == 25 or state == 26) // Int number, put type in the token
                 return Token(lexem, stateclass, "Int", initialLine, initialColumn);
             else // No type
-                return Token(lexem, stateclass, "", initialLine, initialColumn);
+                return Token(lexem, stateclass, "NULL", initialLine, initialColumn);
         }
 
     private:
         std::ifstream archive;
         int line;
         int column;
-        int last;
+        bool havelast;
+        char last;
         SymbolsTable *table;
         std::string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_<>=+-/*\"{}(),;\\";
         

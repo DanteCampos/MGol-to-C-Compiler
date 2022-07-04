@@ -1,5 +1,5 @@
 #include <string>
-
+#include <map>
 /*
 Letters without E and e
 ALPHABET_L_E_e = "abcdfghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ";
@@ -38,7 +38,22 @@ ALPHABET_SYMBOLS = ALPHABET_L_E_e + ALPHABET_D + "_<>=+-/*\"{}(),;\\";
 class DFA {
     public:
         //Initiates the DFA
-        DFA(){};
+        DFA(){
+            for(char c = 'a';c<='z';c++)
+            {
+                if(c=='e')
+                    continue;
+                getSymbolMap[c]=18;
+            }
+            for(char c = 'A';c<='Z';c++)
+            {
+                if(c=='E')
+                    continue;
+                getSymbolMap[c]=18;
+            }
+            for(char c = '0';c<='9';c++)
+                getSymbolMap[c]=17;
+        };
 
         // Transition the state of the DFA based on the given symbol
         int transition(int state, int symbol){
@@ -52,84 +67,17 @@ class DFA {
 
         // Returns column equivalent to the symbol in the DFA
         int getSymbol(char c){
-            if (c == ' ' or c == '\r' or c == '\t' or c == '\n')
-                return 0;
-            if (c == 'E' or c == 'e')
-                return 1;
-            if (c == '_')
-                return 2;
-            if (c == '<')
-                return 3;
-            if (c == '>')
-                return 4;
-            if (c == '=')
-                return 5;
-            if (c == '+')
-                return 6;
-            if (c == '-')
-                return 7;
-            if (c == '/')
-                return 8;
-            if (c == '*')
-                return 9;
-            if (c == '\"')
-                return 10;
-            if (c == '{')
-                return 11;
-            if (c == '}')
-                return 12;
-            if (c == '(')
-                return 13;
-            if (c == ')')
-                return 14;
-            if (c == ',')
-                return 15;
-            if (c == ';')
-                return 16;
-            if (c >= '0' and c <= '9')
-                return 17;
-            if ((c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z'))
-                return 18;
-            if (c == -1)
-                return 19;
-            if (c == '.')
-                return 20;
-            if (c == '\\')
-                return 21;
-            if (c == '\'' || c==':')
-                return 22;
-
-            return -1;
+            if(getSymbolMap.find(c)==getSymbolMap.end())
+                return -1;
+            return getSymbolMap[c];
         }
 
         // Returns the class of the last valid state
         // If the last valid state is not a final state, returns "ERROR"
         std::string getStateClass(int lastValidState){
-            if (lastValidState == 1 or lastValidState == 17 or lastValidState == 19 or lastValidState == 25 or lastValidState == 26 or lastValidState == 27)
-                return "Num";
-            if (lastValidState == 2)
-                return "Lit";
-            if (lastValidState == 3)
-                return "Comment";
-            if (lastValidState == 4)
-                return "EOF";
-            if (lastValidState == 5 or lastValidState == 12 or lastValidState == 13)
-                return "OPR";
-            if (lastValidState == 6)
-                return "RCB";
-            if (lastValidState == 7)
-                return "OPM";
-            if (lastValidState == 8)
-                return "AB_P";
-            if (lastValidState == 9)
-                return "FC_P";
-            if (lastValidState == 10)
-                return "PT_V";
-            if (lastValidState == 11)
-                return "VIR";
-            if (lastValidState == 15)
-                return "Id";
-            return "ERROR";
+            if(StateClassMap.find(lastValidState)==StateClassMap.end())
+                return "ERROR";
+            return StateClassMap[lastValidState];
         }
 
     private:
@@ -162,6 +110,43 @@ class DFA {
             /*25*/{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,25,-1,-1,-1,-1},
             /*26*/{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,26,-1,-1,-1,-1},
             /*27*/{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,27,-1,-1,-1,-1}
+        };
+        std::map<int,std::string> StateClassMap = {
+            {1,"NUM"},{17,"NUM"},{19,"NUM"},{25,"NUM"},{26,"NUM"},{27,"NUM"},
+            {2,"Lit"},
+            {3,"Comment"},
+            {4,"EOF"},
+            {5,"OPR"},{12,"OPR"},{13,"OPR"},
+            {6,"RCB"},
+            {7,"OPM"},
+            {8,"AB_P"},
+            {9,"FC_P"},
+            {10,"PT_V"},
+            {11,"VIT"},
+            {15,"Id"}   
+        };
+        std::map<char,int> getSymbolMap = {
+            {' ',0},{'\r',0},{'\t',0},{'\n',0},
+            {'E',1},{'e',1},
+            {'_',2},
+            {'<',3},
+            {'>',4},
+            {'=',5},
+            {'+',6},
+            {'-',7},
+            {'/',8},
+            {'*',9},
+            {'\"',10},
+            {'{',11},
+            {'}',12},
+            {'(',13},
+            {')',14},
+            {',',15},
+            {';',16},
+            {-1,19},
+            {'.',20},
+            {'\\',21},
+            {'\'',22},{':',22}
         };
 };
 

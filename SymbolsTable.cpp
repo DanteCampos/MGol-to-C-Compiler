@@ -1,32 +1,31 @@
 #pragma once
-#include <unordered_map>
+#include <map>
 #include <string>
 #include <vector>
 #include "Token.cpp"
 #include <iostream>
 class SymbolsTable{
     private:
-        std::unordered_map<std::string, Token> table;
+        std::map<std::string, Token> table;
 
     public:
         SymbolsTable(){
-            std::vector<Token> reservedWords;
-            reservedWords.push_back(Token("inicio", "inicio", "", 0, 0));
-            reservedWords.push_back(Token("varinicio", "varinicio", "", 0, 0));
-            reservedWords.push_back(Token("varfim", "varfim", "", 0, 0));
-            reservedWords.push_back(Token("escreva", "escreva", "", 0, 0));
-            reservedWords.push_back(Token("leia", "leia", "", 0, 0));
-            reservedWords.push_back(Token("se", "se", "", 0, 0));
-            reservedWords.push_back(Token("entao", "entao", "", 0, 0));
-            reservedWords.push_back(Token("fimse", "fimse", "", 0, 0));
-            reservedWords.push_back(Token("Repita", "Repita", "", 0, 0));
-            reservedWords.push_back(Token("fimRepita", "fimRepita", "", 0, 0));
-            reservedWords.push_back(Token("fim", "fim", "", 0, 0));
-            reservedWords.push_back(Token("inteiro", "inteiro", "", 0, 0));
-            reservedWords.push_back(Token("literal", "literal", "", 0, 0));
-            reservedWords.push_back(Token("real", "real", "", 0, 0));
-            for(auto c:reservedWords)
-                table[c.lex]=c;
+            table = {
+                {"inicio",Token("inicio", "inicio", "inicio", 0, 0)},
+                {"varinicio",Token("varinicio", "varinicio", "varinicio", 0, 0)},
+                {"varfim",Token("varfim", "varfim", "varfim", 0, 0)},
+                {"escreva",Token("escreva", "escreva", "escreva", 0, 0)},
+                {"leia",Token("leia", "leia", "leia", 0, 0)},
+                {"se",Token("se", "se", "se", 0, 0)},
+                {"entao",Token("entao", "entao", "entao", 0, 0)},
+                {"fimse",Token("fimse", "fimse", "fimse", 0, 0)},
+                {"Repita",Token("Repita", "Repita", "Repita", 0, 0)},
+                {"fimRepita",Token("fimRepita", "fimRepita", "fimRepita", 0, 0)},
+                {"fim",Token("fim", "fim", "fim", 0, 0)},
+                {"inteiro",Token("inteiro", "inteiro", "inteiro", 0, 0)},
+                {"literal",Token("literal", "literal", "literal", 0, 0)},
+                {"real",Token("real", "real", "real", 0, 0)}
+            };
         }
         ~SymbolsTable(){}
         bool haveSymbol(std::string lex)
@@ -40,7 +39,7 @@ class SymbolsTable{
                 return 1;
             }else
             {
-                std::cout<<"ERRO NAO TEM TOKEN UPT\n";
+                std::cout<<"ERROR ALREADY PUT TOKEN\n";
                 return 0;
             }
         }
@@ -52,7 +51,7 @@ class SymbolsTable{
                 return 1;
             }else
             {
-                std::cout<<"ERRO NAO TEM TOKEN UPT\n";
+                std::cout<<"ERROR NO TOKEN UPT\n";
                 return 0;
             }
         }
@@ -66,7 +65,7 @@ class SymbolsTable{
         Token getSymbol(std::string lex){
             if(table.find(lex)==table.end())
             {
-                std::cout<<"ERRO NAO TEM TOKEN GETS "<<lex<<"\n";
+                std::cout<<"ERROR NO TOKEN GETS "<<lex<<"\n";
                 show();
                 exit(1);
             }
