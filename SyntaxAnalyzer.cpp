@@ -6,17 +6,17 @@ int main(int argc, char** argv){
     SymbolsTable table;
     Scanner scanner(argv[1],&table);
     Token tk;
-    int i = 1;
+    int i = 1,line,column;
     char mov;
     while (scanner.isOpen()){
-        tk = scanner.SCANNER();
+        std::tie(tk,line,column) = scanner.SCANNER();
         
         // std::cout << "TOKEN " << i++ << '\n';
 
         std::cout << "Class: " << tk.lex_class << " , "
         << "Lexem: "<< tk.lex << " , "
         << "Type: "<< tk.type << "\n";
-        // << "At line "<< tk.line << ", column " << tk.column << '\n'
+        // std::cout<< "At line "<< line << ", column " << column << '\n'
         // << '\n';
         if(tk.lex_class=="ERROR")
         {
@@ -24,11 +24,11 @@ int main(int argc, char** argv){
                     std::cout<<"Lexical Error - Invalid Character";
             if(tk.type=="ERL2")
                     std::cout<<"Lexical Error - Missing Character";
-            std::cout<<" at line "<<tk.line<<" and column "<<tk.column<<"\n";
+            std::cout<<" at line "<<line<<" and column "<<column<<"\n";
         }
         // std::cin>>mov;
     }
-    // std::cout<<"Imprimindo a Tabela de Simbolos\n";
+    // std::cout<<"Printing Symbol Table\n";
     // table.show();
     return 0;
 }

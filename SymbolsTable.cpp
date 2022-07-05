@@ -11,20 +11,20 @@ class SymbolsTable{
     public:
         SymbolsTable(){
             table = {
-                {"inicio",Token("inicio", "inicio", "inicio", 0, 0)},
-                {"varinicio",Token("varinicio", "varinicio", "varinicio", 0, 0)},
-                {"varfim",Token("varfim", "varfim", "varfim", 0, 0)},
-                {"escreva",Token("escreva", "escreva", "escreva", 0, 0)},
-                {"leia",Token("leia", "leia", "leia", 0, 0)},
-                {"se",Token("se", "se", "se", 0, 0)},
-                {"entao",Token("entao", "entao", "entao", 0, 0)},
-                {"fimse",Token("fimse", "fimse", "fimse", 0, 0)},
-                {"Repita",Token("Repita", "Repita", "Repita", 0, 0)},
-                {"fimRepita",Token("fimRepita", "fimRepita", "fimRepita", 0, 0)},
-                {"fim",Token("fim", "fim", "fim", 0, 0)},
-                {"inteiro",Token("inteiro", "inteiro", "inteiro", 0, 0)},
-                {"literal",Token("literal", "literal", "literal", 0, 0)},
-                {"real",Token("real", "real", "real", 0, 0)}
+                {"inicio",Token("inicio", "inicio", "inicio")},
+                {"varinicio",Token("varinicio", "varinicio", "varinicio")},
+                {"varfim",Token("varfim", "varfim", "varfim")},
+                {"escreva",Token("escreva", "escreva", "escreva")},
+                {"leia",Token("leia", "leia", "leia")},
+                {"se",Token("se", "se", "se")},
+                {"entao",Token("entao", "entao", "entao")},
+                {"fimse",Token("fimse", "fimse", "fimse")},
+                {"Repita",Token("Repita", "Repita", "Repita")},
+                {"fimRepita",Token("fimRepita", "fimRepita", "fimRepita")},
+                {"fim",Token("fim", "fim", "fim")},
+                {"inteiro",Token("inteiro", "inteiro", "inteiro")},
+                {"literal",Token("literal", "literal", "literal")},
+                {"real",Token("real", "real", "real")}
             };
         }
         ~SymbolsTable(){}

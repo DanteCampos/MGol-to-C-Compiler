@@ -20,9 +20,9 @@ B<-B+1;
 B<-B+2;
 B<-B+3;
 D<-B;
-C<-5.0;
+C<-5E12;
  repita (B<5)
- C<-B+2;
+ C<-B+2e-3;
  escreva C;
  B<-B+1;
  fimrepita
