@@ -77,7 +77,7 @@ class DFA {
             };
 
             StateClassMap = {
-                {1,"NUM"},{17,"NUM"},{19,"NUM"},{25,"NUM"},{26,"NUM"},{27,"NUM"},
+                {1,"Num"},{17,"Num"},{19,"Num"},{25,"Num"},{26,"Num"},{27,"Num"},
                 {2,"Lit"},
                 {3,"Comment"},
                 {4,"EOF"},
