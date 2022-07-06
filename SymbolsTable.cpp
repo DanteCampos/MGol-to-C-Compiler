@@ -27,49 +27,44 @@ class SymbolsTable{
                 {"real",Token("real", "real", "real")}
             };
         }
+        
         ~SymbolsTable(){}
-        bool haveSymbol(std::string lex)
-        {
+
+        bool haveSymbol(std::string lex){
             return table.find(lex)!=table.end();
         }
+
         bool putSymbol(Token tk){
-            if(table.find(tk.lex)==table.end())
-            {
+            if(table.find(tk.lex)==table.end()){
                 table[tk.lex]=tk;
                 return 1;
-            }else
-            {
-                std::cout<<"ERROR ALREADY PUT TOKEN\n";
+            }else{
+                std::cout<<"ERROR: TOKEN ALREADY IN THE TABLE\n";
                 return 0;
             }
         }
 
         bool updateSymbol(Token tk){
-            if(table.find(tk.lex)!=table.end())
-            {
+            if(table.find(tk.lex)!=table.end()){
                 table[tk.lex]=tk;
                 return 1;
-            }else
-            {
-                std::cout<<"ERROR NO TOKEN UPT\n";
+            }else{
+                std::cout<<"ERROR: THERE IS NO TOKEN TO UPDATE\n";
                 return 0;
             }
         }
 
-        void show()
-        {
+        void show(){
             for(auto c:table)
                     std::cout<<c.first<<"\n";
         }
 
         Token getSymbol(std::string lex){
-            if(table.find(lex)==table.end())
-            {
-                std::cout<<"ERROR NO TOKEN GETS "<<lex<<"\n";
+            if(table.find(lex)==table.end()){
+                std::cout<<"ERROR: TOKEN "<<lex<<" IS NOT IN THE TABLE\n";
                 show();
                 exit(1);
             }
             return table[lex];
-            
         }
 };

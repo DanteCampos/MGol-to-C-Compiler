@@ -37,8 +37,12 @@ ALPHABET_SYMBOLS = ALPHABET_L_E_e + ALPHABET_D + "_<>=+-/*\"{}(),;\\";
 */
 
 class DFA {
+    private:
+        std::vector<std::vector<char>> transitionTable;
+        std::map<int,std::string> StateClassMap;
+        std::map<char,int> getSymbolMap;
+        
     public:
-        //Initiates the DFA
         DFA(){
             //initiating tables
             transitionTable = {
@@ -71,6 +75,7 @@ class DFA {
                 /*26*/{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,26,-1,-1,-1,-1},
                 /*27*/{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,27,-1,-1,-1,-1}
             };
+
             StateClassMap = {
                 {1,"NUM"},{17,"NUM"},{19,"NUM"},{25,"NUM"},{26,"NUM"},{27,"NUM"},
                 {2,"Lit"},
@@ -85,6 +90,7 @@ class DFA {
                 {11,"VIT"},
                 {15,"Id"}   
             };
+
             getSymbolMap = {
                 {' ',0},{'\r',0},{'\t',0},{'\n',0},
                 {'E',1},{'e',1},
@@ -108,18 +114,15 @@ class DFA {
                 {'\\',21},
                 {'\'',22},{':',22}
             };
+
             for(char c = 'a';c<='z';c++)
-            {
-                if(c=='e')
-                    continue;
-                getSymbolMap[c]=18;
-            }
+                if(c!='e')
+                    getSymbolMap[c]=18;
+
             for(char c = 'A';c<='Z';c++)
-            {
-                if(c=='E')
-                    continue;
-                getSymbolMap[c]=18;
-            }
+                if(c!='E')
+                    getSymbolMap[c]=18;
+
             for(char c = '0';c<='9';c++)
                 getSymbolMap[c]=17;
         };
@@ -148,10 +151,5 @@ class DFA {
                 return "ERROR";
             return StateClassMap[lastValidState];
         }
-
-    private:
-        std::vector<std::vector<char>> transitionTable;
-        std::map<int,std::string> StateClassMap;
-        std::map<char,int> getSymbolMap;
 };
 

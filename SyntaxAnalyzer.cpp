@@ -18,8 +18,7 @@ int main(int argc, char** argv){
         << "Type: "<< tk.type << "\n";
         // std::cout<< "At line "<< line << ", column " << column << '\n'
         // << '\n';
-        if(tk.lex_class=="ERROR")
-        {
+        if(tk.lex_class=="ERROR"){
             if(tk.type=="ERL1")
                     std::cout<<"Lexical Error - Invalid Character";
             if(tk.type=="ERL2")

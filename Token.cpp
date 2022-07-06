@@ -13,6 +13,4 @@ class Token{
             this->lex_class = lex_class;
             this->type = type;
         }
-
-        
 };
