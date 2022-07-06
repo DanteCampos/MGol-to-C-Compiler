@@ -124,12 +124,22 @@ class Scanner{
 
             // If it is an error, get it's code, prints it's error message and returns error token
             if(stateClass == "ERROR"){
-                haveLast=false;
                 lexem = lastChar;
                 std::string code = dfa.getErrorCode(state);
+                
+                if(code=="ERL1")
+                {
+                    lexem = actualChar;
+                    haveLast=false;
+                    returnColumn = column++;
+                }else
+                {
+                    lexem=lastChar;
+                    returnColumn = column;
+                }
+                
                 returnToken = Token(lexem, "ERROR", code);
                 returnLine = line;
-                returnColumn = column++;
                 std::cout << "Lexical Error " << code << " - " << errorMessageMap[code] << " at line " << returnLine << " and column " << returnColumn << "\n";
             }
 
@@ -152,6 +162,6 @@ class Scanner{
                 returnToken = Token(lexem, "Lit", "Literal");
 
             // Returns token and it's position
-            return std::make_tuple(returnToken, initialLine, initialColumn);
+            return std::make_tuple(returnToken, returnLine, returnColumn);
         }
 };
