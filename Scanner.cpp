@@ -44,7 +44,8 @@ class Scanner{
             char actualChar,firstChar=0,lastChar;
             std::string lexem;
             int initialLine,initialColumn;
-            int state=0,inittoken=0;
+            int state=0;
+            bool initiatedToken=false;
 
             // Loop to read characters until get a token or error
             while(true){
@@ -56,7 +57,8 @@ class Scanner{
                     actualChar = last;
                     havelast=false;
                 }
-                // Try to do a transition
+                
+                // Try to transition
                 int symbol = dfa.getSymbol(actualChar);
                 int newState = dfa.transition(state,symbol);
                 
@@ -66,16 +68,17 @@ class Scanner{
                     last=actualChar;
                     break;
                 }
+
                 // Succeed Transition
                 state=newState;
 
                 // Update position an lexem, case the char is not an ignore
                 if ((actualChar != '\n' and actualChar != '\r' and actualChar != '\t' and actualChar != ' ') ||
                     (actualChar != '\n' and actualChar != '\r' and actualChar != '\t' and firstChar == '\"')){
-                    if(!inittoken){
+                    if(!initiatedToken){
                         initialLine = line;
                         initialColumn = column;
-                        inittoken=1;
+                        initiatedToken=true;
                         firstChar=actualChar;
                     }
                     lexem += actualChar;
@@ -88,7 +91,7 @@ class Scanner{
                     line++;
                     column = 0;
                 }
-            }// Readed a lexem
+            }// Readed lexem/error
 
             std::string stateclass=dfa.getStateClass(state);
             if(stateclass=="EOF"){
