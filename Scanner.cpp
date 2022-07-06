@@ -12,7 +12,7 @@ class Scanner{
         std::ifstream archive;
         int line;
         int column;
-        bool havelast;
+        bool haveLast;
         char last;
         SymbolsTable *table;
         DFA dfa;
@@ -29,12 +29,12 @@ class Scanner{
             archive.open(filePath);
             line = 0;
             column = 0;
-            havelast=false;
+            haveLast=false;
             table=symbolstable;
         }
 
         bool isOpen(){
-            if(havelast)
+            if(haveLast)
                 return true;
             return archive.is_open();
         }
@@ -51,11 +51,11 @@ class Scanner{
             while(true){
 
                 // If there is a char in the buffer(last), takes it, else takes from the input
-                if(!havelast)
+                if(!haveLast)
                     actualChar = archive.get();
                 else{
                     actualChar = last;
-                    havelast=false;
+                    haveLast=false;
                 }
                 
                 // Try to transition
@@ -64,7 +64,7 @@ class Scanner{
                 
                 // Bad transition
                 if(newState==-1){
-                    havelast=true;
+                    haveLast=true;
                     last=actualChar;
                     break;
                 }
@@ -95,13 +95,13 @@ class Scanner{
 
             std::string stateclass=dfa.getStateClass(state);
             if(stateclass=="EOF"){
-                havelast=false;
+                haveLast=false;
                 lexem=stateclass;
                 archive.close();
             }
 
             if(stateclass == "ERROR"){
-                havelast=false;                
+                haveLast=false;                
                 // if(actualChar==-1)
                 // {
                 //     lexem="NULL";   
