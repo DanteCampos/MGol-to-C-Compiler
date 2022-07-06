@@ -1,6 +1,7 @@
 #include <string>
 #include "Scanner.cpp"
 #include "SymbolsTable.cpp"
+#include "Token.cpp"
 
 int main(int argc, char** argv){
     SymbolsTable table;
@@ -18,6 +19,7 @@ int main(int argc, char** argv){
         << "Type: "<< tk.type << "\n";
         // std::cout<< "At line "<< line << ", column " << column << '\n'
         // << '\n';
+        /*
         if(tk.lex_class=="ERROR"){
             if(tk.type=="ERL1")
                     std::cout<<"Lexical Error - Invalid Character";
@@ -25,6 +27,7 @@ int main(int argc, char** argv){
                     std::cout<<"Lexical Error - Missing Character";
             std::cout<<" at line "<<line<<" and column "<<column<<"\n";
         }
+        */
         // std::cin>>mov;
     }
     // std::cout<<"Printing Symbol Table\n";

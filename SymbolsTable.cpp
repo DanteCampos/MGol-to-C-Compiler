@@ -2,8 +2,8 @@
 #include <map>
 #include <string>
 #include <vector>
-#include "Token.cpp"
 #include <iostream>
+#include "Token.cpp"
 class SymbolsTable{
     private:
         std::map<std::string, Token> table;

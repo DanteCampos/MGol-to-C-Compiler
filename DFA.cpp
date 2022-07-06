@@ -41,7 +41,9 @@ class DFA {
         std::vector<std::vector<char>> transitionTable;
         std::map<int,std::string> StateClassMap;
         std::map<char,int> getSymbolMap;
-        
+        std::map<int,std::string> errorMap;
+        std::map<int,std::string> numTypeMap;
+
     public:
         DFA(){
             //initiating tables
@@ -125,6 +127,27 @@ class DFA {
 
             for(char c = '0';c<='9';c++)
                 getSymbolMap[c]=17;
+            
+            errorMap = {
+                {0, "ERL1"}, // Invalid character
+                {14, "ERL3"}, // Comment not closed
+                {16, "ERL4"}, // Literal not closed
+                {18, "ERL5"}, // Expected number after .
+                {20, "ERL6"}, // Expected power after e or E
+                {21, "ERL7"}, // Expected exponent number after - or +
+                {22, "ERL6"}, // Expected power after e or E
+                {23, "ERL7"}, // Expected exponent number after - or +
+                {24, "ERL7"} // Expected exponent number after - or +
+            };
+
+            numTypeMap = {
+                {1, "Real"},
+                {19, "Real"},
+                {27, "Real"},
+                {17, "Int"},
+                {25, "Int"},
+                {26, "Int"}
+            };
         };
 
         // Transition the state of the DFA based on the given symbol
@@ -150,6 +173,20 @@ class DFA {
             if(StateClassMap.find(lastValidState)==StateClassMap.end())
                 return "ERROR";
             return StateClassMap[lastValidState];
+        }
+
+        // Returns the code of the error ocurred by stopping at the last valid state
+        std::string getErrorCode(int lastValidState){
+            if(errorMap.find(lastValidState)==errorMap.end())
+                return "ERL2"; // Missing character
+            return errorMap[lastValidState];
+        }
+
+        // Returns the type of the number got at the last valid state
+        std::string getNumType(int lastValidState){
+            if(numTypeMap.find(lastValidState)==numTypeMap.end())
+                return "NULL"; // Type not found
+            return numTypeMap[lastValidState];
         }
 };
 

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <map>
 #include "Token.cpp"
 #include "DFA.cpp"
 #include "SymbolsTable.cpp"
@@ -17,11 +18,25 @@ class Scanner{
         SymbolsTable *table;
         DFA dfa;
         //std::string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_<>=+-/*\"{}(),;\\";
-        
+        std::map <std::string, std::string> errorMessageMap={
+            {"ERL1", "Invalid character"},
+            {"ERL2", "Missing character"},
+            {"ERL3", "Comment not closed"},
+            {"ERL4", "Literal not closed"},
+            {"ERL5", "Expected number after ."},
+            {"ERL6", "Expected power after e or E"},
+            {"ERL7", "Expected exponent number after - or +"}
+        };
 
         //Returns true if char is in the language, comparing with the alphabet
         bool isInLanguage(char c){
             return dfa.getSymbol(c) != -1;
+        }
+
+        std::string getErrorMessage(std::string errorCode){
+            if(errorMessageMap.find(errorCode)==errorMessageMap.end())
+                return "Unidentified error"; // Code not found
+            return errorMessageMap[errorCode];
         }
 
     public:
@@ -40,7 +55,6 @@ class Scanner{
         }
 
         std::tuple<Token,int,int> SCANNER(){
-            
             char actualChar,firstChar=0,lastChar;
             std::string lexem;
             int initialLine,initialColumn;
@@ -93,43 +107,51 @@ class Scanner{
                 }
             }// Readed lexem/error
 
-            std::string stateclass=dfa.getStateClass(state);
-            if(stateclass=="EOF"){
+            std::string stateClass=dfa.getStateClass(state);
+            Token returnToken = Token(lexem, stateClass, "NULL");
+            int returnLine = initialLine;
+            int returnColumn = initialColumn;
+
+            // Treating special tokens
+
+            // If reached the end of file, closes it
+            if(stateClass=="EOF"){
                 haveLast=false;
-                lexem=stateclass;
+                lexem="EOF";
                 archive.close();
+                returnToken = Token("EOF", "EOF", "NULL");
             }
 
-            if(stateclass == "ERROR"){
-                haveLast=false;                
-                // if(actualChar==-1)
-                // {
-                //     lexem="NULL";   
-                //     return std::make_tuple(Token(lexem, stateclass, "ERL2"), line, column++);             
-                // }else
-                // {
-                    lexem = lastChar;
-                    return std::make_tuple(Token(lexem, stateclass, "ERL1"), line, column++);
-                // } 
+            // If it is an error, get it's code, prints it's error message and returns error token
+            if(stateClass == "ERROR"){
+                haveLast=false;
+                lexem = lastChar;
+                std::string code = dfa.getErrorCode(state);
+                returnToken = Token(lexem, "ERROR", code);
+                returnLine = line;
+                returnColumn = column++;
+                std::cout << "Lexical Error " << code << " - " << errorMessageMap[code] << " at line " << returnLine << " and column " << returnColumn << "\n";
             }
 
-            // Call again function since Comment should be ignored by lex
-            if(stateclass=="Comment")
+            // Call again function since Comment should be ignored by the scanner
+            if(stateClass=="Comment")
                 return SCANNER();
 
             // Updating symbol table
-            if(stateclass=="Id"){
+            if(stateClass=="Id"){
                 if(!table->haveSymbol(lexem))
-                        table->putSymbol(Token(lexem, stateclass, "NULL"));
-                return std::make_tuple(table->getSymbol(lexem), initialLine, initialColumn);
-
+                        table->putSymbol(Token(lexem, "Id", "NULL"));
+                returnToken = table->getSymbol(lexem);
             }
 
-            if (state == 1 or state == 19 or state == 27) // Real number, put type in the token
-                return std::make_tuple(Token(lexem, stateclass, "Real"), initialLine, initialColumn);
-            else if (state == 17 or state == 25 or state == 26) // Int number, put type in the token
-                return std::make_tuple(Token(lexem, stateclass, "Int"), initialLine, initialColumn);
-            else // No type
-                return std::make_tuple(Token(lexem, stateclass, "NULL"), initialLine, initialColumn);
+            // If it is a number, get it's type
+            if (stateClass=="Num")
+                returnToken = Token(lexem, "Num", dfa.getNumType(state));
+
+            if (stateClass == "Lit")
+                returnToken = Token(lexem, "Lit", "Literal");
+
+            // Returns token and it's position
+            return std::make_tuple(returnToken, initialLine, initialColumn);
         }
 };
