@@ -72,7 +72,7 @@ class Scanner{
                 // Succeed Transition
                 state=newState;
 
-                // Update position an lexem, case the char is not an ignore
+                // Updates token position if char is not ignored
                 if ((actualChar != '\n' and actualChar != '\r' and actualChar != '\t' and actualChar != ' ') ||
                     (actualChar != '\n' and actualChar != '\r' and actualChar != '\t' and firstChar == '\"')){
                     if(!initiatedToken){

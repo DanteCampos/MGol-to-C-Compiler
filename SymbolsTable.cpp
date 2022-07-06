@@ -54,11 +54,6 @@ class SymbolsTable{
             }
         }
 
-        void show(){
-            for(auto c:table)
-                    std::cout<<c.first<<"\n";
-        }
-
         Token getSymbol(std::string lex){
             if(table.find(lex)==table.end()){
                 std::cout<<"ERROR: TOKEN "<<lex<<" IS NOT IN THE TABLE\n";
@@ -66,5 +61,10 @@ class SymbolsTable{
                 exit(1);
             }
             return table[lex];
+        }
+
+        void show(){
+            for(auto c:table)
+                    std::cout<<c.first<<"\n";
         }
 };
