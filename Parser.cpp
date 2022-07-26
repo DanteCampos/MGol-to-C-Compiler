@@ -1,34 +1,49 @@
 #include <string>
+#include <stack>
 #include "Scanner.cpp"
 #include "SymbolsTable.cpp"
 #include "Token.cpp"
+#include "DFAsintax.cpp"
 
 int main(int argc, char** argv){
     SymbolsTable table;
     Scanner scanner(argv[1],&table);
     Token tk;
-    int i = 1,line,column;
+    DFAsintax mydfa;
+    int i = 1,line,column,state=0,type,nxstate;
     char mov;
-    while (scanner.isOpen()){
-        std::tie(tk,line,column) = scanner.SCANNER();
-        
-        // std::cout << "TOKEN " << i++ << '\n';
-
-        std::cout << "Class: " << tk.lex_class << " , "
-        << "Lexem: "<< tk.lex << " , "
-        << "Type: "<< tk.type << "\n";
-        // std::cout<< "At line "<< line << ", column " << column << '\n'
-        // << '\n';
-        /*
-        if(tk.lex_class=="ERROR"){
-            if(tk.type=="ERL1")
-                    std::cout<<"Lexical Error - Invalid Character";
-            if(tk.type=="ERL2")
-                    std::cout<<"Lexical Error - Missing Character";
-            std::cout<<" at line "<<line<<" and column "<<column<<"\n";
+    std::stack<int> St;
+    St.push(1);
+    std::tie(tk,line,column) = scanner.SCANNER();
+    while (1){
+        std::string mv;
+        int at;
+        std::tie(mv,at) = mydfa.ACTION(St.top(),tk.lex_class);
+        // std::cout<<St.top()<<" "<<tk.lex_class<<'\n';
+        // std::cout<<mv<<" "<<at<<'\n';
+        if( mv == "S")
+        {
+            St.push(at);
+            std::tie(tk,line,column) = scanner.SCANNER();
+        } else if( mv == "R")
+        {
+            int qtd = mydfa.sizeSTATE(at);
+            mydfa.showSTATE(at);
+            while(qtd--){
+                // std::cout<<"out "<<St.top()<<"\n";
+                St.pop();
+            }
+            // std::cout<<St.top()<<" "<<mydfa.GOTO(St.top(),mydfa.initial(at))<<'\n';
+            St.push(mydfa.GOTO(St.top(),mydfa.initial(at)));
+        }else if(mv == "ERROR")
+        {
+            std::cout<<"ERRO "<<line<<" "<<column<<'\n';
+            break;
+        }else{
+            mydfa.showSTATE(at);
+            std::cout<<"ACEITOU RECEBA O MELHOR DE TODOS\n";
+            break;
         }
-        */
-        // std::cin>>mov;
     }
     // std::cout<<"Printing Symbol Table\n";
     // table.show();

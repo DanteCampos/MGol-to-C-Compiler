@@ -119,7 +119,7 @@ class Scanner{
                 haveLast=false;
                 lexem="EOF";
                 archive.close();
-                returnToken = Token("EOF", "EOF", "NULL");
+                returnToken = Token("EOF", "$", "NULL");
             }
 
             // If it is an error, get it's code, prints it's error message and returns error token
@@ -148,18 +148,18 @@ class Scanner{
                 return SCANNER();
 
             // Updating symbol table
-            if(stateClass=="Id"){
+            if(stateClass=="id"){
                 if(!table->haveSymbol(lexem))
-                        table->putSymbol(Token(lexem, "Id", "NULL"));
+                        table->putSymbol(Token(lexem, "id", "NULL"));
                 returnToken = table->getSymbol(lexem);
             }
 
             // If it is a number, get it's type
-            if (stateClass=="Num")
-                returnToken = Token(lexem, "Num", dfa.getNumType(state));
+            if (stateClass=="num")
+                returnToken = Token(lexem, "num", dfa.getNumType(state));
 
-            if (stateClass == "Lit")
-                returnToken = Token(lexem, "Lit", "Literal");
+            if (stateClass == "lit")
+                returnToken = Token(lexem, "lit", "literal");
 
             // Returns token and it's position
             return std::make_tuple(returnToken, returnLine, returnColumn);

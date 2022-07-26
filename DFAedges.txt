@@ -1,0 +1,433 @@
+1
+G 2 P
+S 3 inicio
+2
+ACC 1 $
+3
+G 4 V
+S 5 varinicio
+4
+G 6 A
+G 7 ES
+S 8 leia
+S 9 escreva
+G 10 CMD
+S 11 id
+G 12 COND
+G 13 CAB
+S 14 se
+G 15 R
+G 16 CABR
+S 17 repita
+S 18 fim
+5
+G 19 LV
+G 20 D
+S 21 varfim
+G 22 TIPO
+S 23 inteiro
+S 24 real
+S 25 literal
+6
+R 2 $
+7
+G 7 ES
+G 26 A
+S 8 leia
+S 9 escreva
+G 10 CMD
+S 11 id
+G 12 COND
+G 13 CAB
+S 14 se
+G 15 R
+G 16 CABR
+S 17 repita
+S 18 fim
+8
+S 27 id
+9
+G 28 ARG
+S 29 lit
+S 30 num
+S 31 id
+10
+G 7 ES
+S 8 leia
+S 9 escreva
+G 10 CMD
+G 32 A
+S 11 id
+G 12 COND
+G 13 CAB
+S 14 se
+G 15 R
+G 16 CABR
+S 17 repita
+S 18 fim
+11
+S 33 rcb
+12
+G 7 ES
+S 8 leia
+S 9 escreva
+G 10 CMD
+S 11 id
+G 12 COND
+G 34 A
+G 13 CAB
+S 14 se
+G 15 R
+G 16 CABR
+S 17 repita
+S 18 fim
+13
+S 8 leia
+S 9 escreva
+S 11 id
+G 13 CAB
+G 35 CP
+S 14 se
+G 36 ES
+G 37 CMD
+G 38 COND
+S 39 fimse
+14
+S 40 ab_p
+15
+G 7 ES
+S 8 leia
+S 9 escreva
+G 10 CMD
+S 11 id
+G 12 COND
+G 13 CAB
+S 14 se
+G 15 R
+G 41 A
+G 16 CABR
+S 17 repita
+S 18 fim
+16
+S 8 leia
+S 9 escreva
+S 11 id
+G 13 CAB
+S 14 se
+G 42 CPR
+G 43 ES
+G 44 CMD
+G 45 COND
+S 46 fimrepita
+17
+S 47 ab_p
+18
+R 39 $
+19
+R 3 escreva
+R 3 fim
+R 3 id
+R 3 leia
+R 3 repita
+R 3 se
+20
+G 20 D
+G 48 LV
+S 21 varfim
+G 22 TIPO
+S 23 inteiro
+S 24 real
+S 25 literal
+21
+S 49 pt_v
+22
+G 50 L
+S 51 id
+23
+R 9 id
+24
+R 10 id
+25
+R 11 id
+26
+R 12 $
+27
+S 52 pt_v
+28
+S 53 pt_v
+29
+R 15 pt_v
+30
+R 16 pt_v
+31
+R 17 pt_v
+32
+R 18 $
+33
+G 54 LD
+G 55 OPRD
+S 56 id
+S 57 num
+34
+R 24 $
+35
+R 25 escreva
+R 25 fim
+R 25 fimrepita
+R 25 fimse
+R 25 id
+R 25 leia
+R 25 repita
+R 25 se
+36
+S 8 leia
+S 9 escreva
+S 11 id
+G 13 CAB
+S 14 se
+G 36 ES
+G 58 CP
+G 37 CMD
+G 38 COND
+S 39 fimse
+37
+S 8 leia
+S 9 escreva
+S 11 id
+G 13 CAB
+S 14 se
+G 36 ES
+G 37 CMD
+G 59 CP
+G 38 COND
+S 39 fimse
+38
+S 8 leia
+S 9 escreva
+S 11 id
+G 13 CAB
+S 14 se
+G 36 ES
+G 37 CMD
+G 38 COND
+G 60 CP
+S 39 fimse
+39
+R 31 escreva
+R 31 fim
+R 31 fimrepita
+R 31 fimse
+R 31 id
+R 31 leia
+R 31 repita
+R 31 se
+40
+S 56 id
+S 57 num
+G 61 EXP_R
+G 62 OPRD
+41
+R 32 $
+42
+R 33 escreva
+R 33 fim
+R 33 id
+R 33 leia
+R 33 repita
+R 33 se
+43
+S 8 leia
+S 9 escreva
+S 11 id
+G 13 CAB
+S 14 se
+G 43 ES
+G 63 CPR
+G 44 CMD
+G 45 COND
+S 46 fimrepita
+44
+S 8 leia
+S 9 escreva
+S 11 id
+G 13 CAB
+S 14 se
+G 43 ES
+G 44 CMD
+G 64 CPR
+G 45 COND
+S 46 fimrepita
+45
+S 8 leia
+S 9 escreva
+S 11 id
+G 13 CAB
+S 14 se
+G 43 ES
+G 44 CMD
+G 45 COND
+G 65 CPR
+S 46 fimrepita
+46
+R 38 escreva
+R 38 fim
+R 38 id
+R 38 leia
+R 38 repita
+R 38 se
+47
+S 56 id
+S 57 num
+G 62 OPRD
+G 66 EXP_R
+48
+R 4 escreva
+R 4 fim
+R 4 id
+R 4 leia
+R 4 repita
+R 4 se
+49
+R 5 escreva
+R 5 fim
+R 5 id
+R 5 leia
+R 5 repita
+R 5 se
+50
+S 67 pt_v
+51
+R 8 pt_v
+S 68 vir
+52
+R 13 escreva
+R 13 fim
+R 13 fimrepita
+R 13 fimse
+R 13 id
+R 13 leia
+R 13 repita
+R 13 se
+53
+R 14 escreva
+R 14 fim
+R 14 fimrepita
+R 14 fimse
+R 14 id
+R 14 leia
+R 14 repita
+R 14 se
+54
+S 69 pt_v
+55
+R 21 pt_v
+S 70 opm
+56
+R 22 fc_p
+R 22 opm
+R 22 opr
+R 22 pt_v
+57
+R 23 fc_p
+R 23 opm
+R 23 opr
+R 23 pt_v
+58
+R 28 escreva
+R 28 fim
+R 28 fimrepita
+R 28 fimse
+R 28 id
+R 28 leia
+R 28 repita
+R 28 se
+59
+R 29 escreva
+R 29 fim
+R 29 fimrepita
+R 29 fimse
+R 29 id
+R 29 leia
+R 29 repita
+R 29 se
+60
+R 30 escreva
+R 30 fim
+R 30 fimrepita
+R 30 fimse
+R 30 id
+R 30 leia
+R 30 repita
+R 30 se
+61
+S 71 fc_p
+62
+S 72 opr
+63
+R 35 escreva
+R 35 fim
+R 35 id
+R 35 leia
+R 35 repita
+R 35 se
+64
+R 36 escreva
+R 36 fim
+R 36 id
+R 36 leia
+R 36 repita
+R 36 se
+65
+R 37 escreva
+R 37 fim
+R 37 id
+R 37 leia
+R 37 repita
+R 37 se
+66
+S 73 fc_p
+67
+R 6 inteiro
+R 6 literal
+R 6 real
+R 6 varfim
+68
+S 51 id
+G 74 L
+69
+R 19 escreva
+R 19 fim
+R 19 fimrepita
+R 19 fimse
+R 19 id
+R 19 leia
+R 19 repita
+R 19 se
+70
+G 75 OPRD
+S 56 id
+S 57 num
+71
+S 76 entao
+72
+S 56 id
+S 57 num
+G 77 OPRD
+73
+R 34 escreva
+R 34 fimrepita
+R 34 id
+R 34 leia
+R 34 se
+74
+R 7 pt_v
+75
+R 20 pt_v
+76
+R 26 escreva
+R 26 fimse
+R 26 id
+R 26 leia
+R 26 se
+77
+R 27 fc_p

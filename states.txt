@@ -1,0 +1,39 @@
+1 Plinha  P
+2 P inicio V A
+3 V varinicio LV
+4 LV D LV
+5 LV varfim pt_v
+6 D TIPO L pt_v
+7 L id vir L
+8 L id
+9 TIPO inteiro
+10 TIPO real
+11 TIPO literal
+12 A ES A
+13 ES leia id pt_v
+14 ES escreva ARG pt_v
+15 ARG lit
+16 ARG num
+17 ARG id
+18 A CMD A
+19 CMD id rcb LD pt_v
+20 LD OPRD opm OPRD
+21 LD OPRD
+22 OPRD id
+23 OPRD num
+24 A COND A
+25 COND CAB CP
+26 CAB se ab_p EXP_R fc_p entao
+27 EXP_R OPRD opr OPRD
+28 CP ES CP
+29 CP CMD CP
+30 CP COND CP
+31 CP fimse
+32 A R A
+33 R  CABR CPR
+34 CABR  repita ab_p EXP_R fc_p
+35 CPR ES CPR
+36 CPR CMD CPR
+37 CPR COND CPR
+38 CPR fimrepita
+39 A fim

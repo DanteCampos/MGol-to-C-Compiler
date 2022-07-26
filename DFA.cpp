@@ -79,18 +79,18 @@ class DFA {
             };
 
             StateClassMap = {
-                {1,"Num"},{17,"Num"},{19,"Num"},{25,"Num"},{26,"Num"},{27,"Num"},
-                {2,"Lit"},
+                {1,"num"},{17,"num"},{19,"num"},{25,"num"},{26,"num"},{27,"num"},
+                {2,"lit"},
                 {3,"Comment"},
                 {4,"EOF"},
-                {5,"OPR"},{12,"OPR"},{13,"OPR"},
-                {6,"RCB"},
-                {7,"OPM"},
-                {8,"AB_P"},
-                {9,"FC_P"},
-                {10,"PT_V"},
-                {11,"Vir"},
-                {15,"Id"}   
+                {5,"opr"},{12,"opr"},{13,"opr"},
+                {6,"rcb"},
+                {7,"opm"},
+                {8,"ab_p"},
+                {9,"fc_p"},
+                {10,"pt_v"},
+                {11,"vir"},
+                {15,"id"}   
             };
 
             getSymbolMap = {

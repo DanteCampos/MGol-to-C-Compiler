@@ -1,0 +1,323 @@
+1
+1 Plinha . P 
+2 P . inicio V A 
+2
+1 Plinha P . 
+3
+2 P inicio . V A 
+3 V . varinicio LV 
+4
+2 P inicio V . A 
+12 A . ES A 
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+18 A . CMD A 
+19 CMD . id rcb LD pt_v 
+24 A . COND A 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+32 A . R A 
+33 R . CABR CPR 
+34 CABR . repita ab_p EXP_R fc_p 
+39 A . fim 
+5
+3 V varinicio . LV 
+4 LV . D LV 
+5 LV . varfim pt_v 
+6 D . TIPO L pt_v 
+9 TIPO . inteiro 
+10 TIPO . real 
+11 TIPO . literal 
+6
+2 P inicio V A . 
+7
+12 A . ES A 
+12 A ES . A 
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+18 A . CMD A 
+19 CMD . id rcb LD pt_v 
+24 A . COND A 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+32 A . R A 
+33 R . CABR CPR 
+34 CABR . repita ab_p EXP_R fc_p 
+39 A . fim 
+8
+13 ES leia . id pt_v 
+9
+14 ES escreva . ARG pt_v 
+15 ARG . lit 
+16 ARG . num 
+17 ARG . id 
+10
+12 A . ES A 
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+18 A . CMD A 
+18 A CMD . A 
+19 CMD . id rcb LD pt_v 
+24 A . COND A 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+32 A . R A 
+33 R . CABR CPR 
+34 CABR . repita ab_p EXP_R fc_p 
+39 A . fim 
+11
+19 CMD id . rcb LD pt_v 
+12
+12 A . ES A 
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+18 A . CMD A 
+19 CMD . id rcb LD pt_v 
+24 A . COND A 
+24 A COND . A 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+32 A . R A 
+33 R . CABR CPR 
+34 CABR . repita ab_p EXP_R fc_p 
+39 A . fim 
+13
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+19 CMD . id rcb LD pt_v 
+25 COND . CAB CP 
+25 COND CAB . CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+28 CP . ES CP 
+29 CP . CMD CP 
+30 CP . COND CP 
+31 CP . fimse 
+14
+26 CAB se . ab_p EXP_R fc_p entao 
+15
+12 A . ES A 
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+18 A . CMD A 
+19 CMD . id rcb LD pt_v 
+24 A . COND A 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+32 A . R A 
+32 A R . A 
+33 R . CABR CPR 
+34 CABR . repita ab_p EXP_R fc_p 
+39 A . fim 
+16
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+19 CMD . id rcb LD pt_v 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+33 R CABR . CPR 
+35 CPR . ES CPR 
+36 CPR . CMD CPR 
+37 CPR . COND CPR 
+38 CPR . fimrepita 
+17
+34 CABR repita . ab_p EXP_R fc_p 
+18
+39 A fim . 
+19
+3 V varinicio LV . 
+20
+4 LV . D LV 
+4 LV D . LV 
+5 LV . varfim pt_v 
+6 D . TIPO L pt_v 
+9 TIPO . inteiro 
+10 TIPO . real 
+11 TIPO . literal 
+21
+5 LV varfim . pt_v 
+22
+6 D TIPO . L pt_v 
+7 L . id vir L 
+8 L . id 
+23
+9 TIPO inteiro . 
+24
+10 TIPO real . 
+25
+11 TIPO literal . 
+26
+12 A ES A . 
+27
+13 ES leia id . pt_v 
+28
+14 ES escreva ARG . pt_v 
+29
+15 ARG lit . 
+30
+16 ARG num . 
+31
+17 ARG id . 
+32
+18 A CMD A . 
+33
+19 CMD id rcb . LD pt_v 
+20 LD . OPRD opm OPRD 
+21 LD . OPRD 
+22 OPRD . id 
+23 OPRD . num 
+34
+24 A COND A . 
+35
+25 COND CAB CP . 
+36
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+19 CMD . id rcb LD pt_v 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+28 CP . ES CP 
+28 CP ES . CP 
+29 CP . CMD CP 
+30 CP . COND CP 
+31 CP . fimse 
+37
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+19 CMD . id rcb LD pt_v 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+28 CP . ES CP 
+29 CP . CMD CP 
+29 CP CMD . CP 
+30 CP . COND CP 
+31 CP . fimse 
+38
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+19 CMD . id rcb LD pt_v 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+28 CP . ES CP 
+29 CP . CMD CP 
+30 CP . COND CP 
+30 CP COND . CP 
+31 CP . fimse 
+39
+31 CP fimse . 
+40
+22 OPRD . id 
+23 OPRD . num 
+26 CAB se ab_p . EXP_R fc_p entao 
+27 EXP_R . OPRD opr OPRD 
+41
+32 A R A . 
+42
+33 R CABR CPR . 
+43
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+19 CMD . id rcb LD pt_v 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+35 CPR . ES CPR 
+35 CPR ES . CPR 
+36 CPR . CMD CPR 
+37 CPR . COND CPR 
+38 CPR . fimrepita 
+44
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+19 CMD . id rcb LD pt_v 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+35 CPR . ES CPR 
+36 CPR . CMD CPR 
+36 CPR CMD . CPR 
+37 CPR . COND CPR 
+38 CPR . fimrepita 
+45
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+19 CMD . id rcb LD pt_v 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+35 CPR . ES CPR 
+36 CPR . CMD CPR 
+37 CPR . COND CPR 
+37 CPR COND . CPR 
+38 CPR . fimrepita 
+46
+38 CPR fimrepita . 
+47
+22 OPRD . id 
+23 OPRD . num 
+27 EXP_R . OPRD opr OPRD 
+34 CABR repita ab_p . EXP_R fc_p 
+48
+4 LV D LV . 
+49
+5 LV varfim pt_v . 
+50
+6 D TIPO L . pt_v 
+51
+7 L id . vir L 
+8 L id . 
+52
+13 ES leia id pt_v . 
+53
+14 ES escreva ARG pt_v . 
+54
+19 CMD id rcb LD . pt_v 
+55
+20 LD OPRD . opm OPRD 
+21 LD OPRD . 
+56
+22 OPRD id . 
+57
+23 OPRD num . 
+58
+28 CP ES CP . 
+59
+29 CP CMD CP . 
+60
+30 CP COND CP . 
+61
+26 CAB se ab_p EXP_R . fc_p entao 
+62
+27 EXP_R OPRD . opr OPRD 
+63
+35 CPR ES CPR . 
+64
+36 CPR CMD CPR . 
+65
+37 CPR COND CPR . 
+66
+34 CABR repita ab_p EXP_R . fc_p 
+67
+6 D TIPO L pt_v . 
+68
+7 L . id vir L 
+7 L id vir . L 
+8 L . id 
+69
+19 CMD id rcb LD pt_v . 
+70
+20 LD OPRD opm . OPRD 
+22 OPRD . id 
+23 OPRD . num 
+71
+26 CAB se ab_p EXP_R fc_p . entao 
+72
+22 OPRD . id 
+23 OPRD . num 
+27 EXP_R OPRD opr . OPRD 
+73
+34 CABR repita ab_p EXP_R fc_p . 
+74
+7 L id vir L . 
+75
+20 LD OPRD opm OPRD . 
+76
+26 CAB se ab_p EXP_R fc_p entao . 
+77
+27 EXP_R OPRD opr OPRD . 
