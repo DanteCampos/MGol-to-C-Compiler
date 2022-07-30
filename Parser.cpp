@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <stack>
 #include "Scanner.cpp"
@@ -9,42 +10,55 @@ int main(int argc, char** argv){
     SymbolsTable table;
     Scanner scanner(argv[1],&table);
     Token tk;
-    DFAsintax mydfa;
-    int i = 1,line,column,state=0,type,nxstate;
-    char mov;
-    std::stack<int> St;
-    St.push(1);
-    std::tie(tk,line,column) = scanner.SCANNER();
-    while (1){
+    DFAsintax dfa_syntax;
+    int i = 1, line, column, state = 0, type, nxstate;
+    
+    std::map <std::string, std::string> errorMessageMap={
+        {"ERS1", "Invalid syntax"}
+    };
+
+    // Movement readed from the DFA
+    // 'S' = Shift, 'R' = Reduce, "Error", "Accept"
+    char mov; 
+
+    std::stack<int> Stack; // Stack of states and tokens
+    Stack.push(1); // Initial state = 1
+    std::tie(tk, line, column) = scanner.SCANNER(); // Get first token
+    
+    while (true){ // Loop: Read next token and move to next state
         std::string mv;
         int at;
-        std::tie(mv,at) = mydfa.ACTION(St.top(),tk.lex_class);
-        // std::cout<<St.top()<<" "<<tk.lex_class<<'\n';
+        
+        //Getting the movement from the Syntax DFA
+        std::tie(mv,at) = dfa_syntax.ACTION(Stack.top(),tk.lex_class);
+        // std::cout<<Stack.top()<<" "<<tk.lex_class<<'\n';
         // std::cout<<mv<<" "<<at<<'\n';
-        if( mv == "S")
-        {
-            St.push(at);
+       
+        if( mv == "S"){ // Shift
+            Stack.push(at); // Push state
             std::tie(tk,line,column) = scanner.SCANNER();
-        } else if( mv == "R")
-        {
-            int qtd = mydfa.sizeSTATE(at);
-            mydfa.showSTATE(at);
-            while(qtd--){
-                // std::cout<<"out "<<St.top()<<"\n";
-                St.pop();
-            }
-            // std::cout<<St.top()<<" "<<mydfa.GOTO(St.top(),mydfa.initial(at))<<'\n';
-            St.push(mydfa.GOTO(St.top(),mydfa.initial(at)));
-        }else if(mv == "ERROR")
-        {
-            std::cout<<"ERRO "<<line<<" "<<column<<'\n';
+
+        }else if( mv == "R"){ // Reduce
+            int qtd = dfa_syntax.sizeSTATE(at); // How many states will be removed
+            dfa_syntax.showSTATE(at); // Show the rule used to reduce
+            while(qtd--) // Removing states from the stack
+                Stack.pop();
+
+            // std::cout<<Stack.top()<<" "<<mydfa.GOTO(Stack.top(),mydfa.initial(at))<<'\n';
+            
+            // Push the symbol at the left side of the rule used in the reduction
+            Stack.push(dfa_syntax.GOTO(Stack.top(),dfa_syntax.initial(at)));
+        }else if(mv == "ERROR"){
+            std::string code = dfa_syntax.getErrorCode(at);
+            std::cout<<"Syntatic Error " << code << " - " << errorMessageMap[code] <<" at line "<<line<<", column "<<column<<'\n';
             break;
-        }else{
-            mydfa.showSTATE(at);
-            std::cout<<"ACEITOU RECEBA O MELHOR DE TODOS\n";
+        }else{ // Accept
+            dfa_syntax.showSTATE(at);
+            std::cout<<"Code accepted.\n";
             break;
         }
     }
+    
     // std::cout<<"Printing Symbol Table\n";
     // table.show();
     return 0;

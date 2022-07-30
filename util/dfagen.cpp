@@ -1,3 +1,4 @@
+#pragma once
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -79,6 +80,7 @@ set<string> calcfollow(string now)
     }
     return resp;
 }
+
 int main()
 {
     string s;
