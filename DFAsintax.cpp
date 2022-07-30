@@ -44,6 +44,7 @@ class DFAsintax {
             nst = 1;
             gotos.push_back(std::map< std::string, int >());
             actions.push_back(std::map< std::string, std::tuple< std::string, int > >());
+            
             while(getline(fined,s)){
                 if(s[0]<='9' && s[0]>='0'){
                     gotos.push_back(std::map< std::string, int >());
