@@ -94,11 +94,15 @@ class DFAsintax {
             return vals[state][0];
         }
 
-        void showSTATE(int state){
+        // Show the gramatic rule used in the reduction
+        // Returns the left side of the derivation
+        // Parameter: rule number
+        std::string showSTATE(int state){
             std::cout<<vals[state][0]<<" -> ";
             for (int i = 1; i < vals[state].size() ; ++i)
                 std::cout<<vals[state][i]<<' ';
             std::cout<<"\n";
+            return vals[state][0];
         }
 
         std::string getErrorCode(int state){

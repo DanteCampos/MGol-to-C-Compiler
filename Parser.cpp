@@ -12,9 +12,30 @@ int main(int argc, char** argv){
     Token tk;
     DFAsintax dfa_syntax;
     int i = 1, line, column, state = 0, type, nxstate;
-    
+    bool valid = true;
+
     std::map <std::string, std::string> errorMessageMap={
-        {"ERS1", "Invalid syntax"}
+        {"ERS0", "Invalid syntax"},
+        {"ERS1", "Missing \"inicio\""},
+        {"ERS2", "Missing \"varinicio\""},
+        {"ERS3", "Missing \"varfim\""},
+        {"ERS4", "Missing \",\""},
+        {"ERS5", "Missing id"},
+        {"ERS6", "Missing type definition"},
+        {"ERS7", "Missing id"},
+        {"ERS8", "Missing argument"},
+        {"ERS9", "Missing id"},
+        {"ERS10", "Missing attribution"},
+        {"ERS11", "Missing value"},
+        {"ERS12", "Missing attribution"},
+        {"ERS13", "Missing attribution"},
+        {"ERS14", "Missing attribution"},
+        {"ERS15", "Missing attribution"},
+        {"ERS16", "Missing attribution"},
+        {"ERS17", "Missing attribution"},
+        {"ERS18", "Missing attribution"},
+        {"ERS19", "Missing attribution"},
+
     };
 
     // Movement readed from the DFA
@@ -40,16 +61,23 @@ int main(int argc, char** argv){
 
         }else if( mv == "R"){ // Reduce
             int qtd = dfa_syntax.sizeSTATE(at); // How many states will be removed
-            dfa_syntax.showSTATE(at); // Show the rule used to reduce
+            std::string non_terminal = dfa_syntax.showSTATE(at); // Show the rule used to reduce, get the left side of derivation
             while(qtd--) // Removing states from the stack
                 Stack.pop();
+            
+            // Checking if rule reduced is an error
+            if (non_terminal.find("ERS") != std::string::npos){
+                std::string code = non_terminal; // Known error
+                std::cout<<"Syntatic Error " << code << " - " << errorMessageMap[code] <<" at line "<<line<<", column "<<column<<'\n';
+                valid = false;
+            }
 
             // std::cout<<Stack.top()<<" "<<mydfa.GOTO(Stack.top(),mydfa.initial(at))<<'\n';
             
             // Push the symbol at the left side of the rule used in the reduction
             Stack.push(dfa_syntax.GOTO(Stack.top(),dfa_syntax.initial(at)));
         }else if(mv == "ERROR"){
-            std::string code = dfa_syntax.getErrorCode(at);
+            std::string code = "ERS0"; // Unknown error
             std::cout<<"Syntatic Error " << code << " - " << errorMessageMap[code] <<" at line "<<line<<", column "<<column<<'\n';
             break;
         }else{ // Accept
