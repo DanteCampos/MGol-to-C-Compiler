@@ -168,6 +168,7 @@ G 54 LD
 G 55 OPRD
 S 56 id
 S 57 num
+G 58 ERRO1
 34
 R 24 $
 35
@@ -186,7 +187,7 @@ S 11 id
 G 13 CAB
 S 14 se
 G 36 ES
-G 58 CP
+G 59 CP
 G 37 CMD
 G 38 COND
 S 39 fimse
@@ -198,7 +199,7 @@ G 13 CAB
 S 14 se
 G 36 ES
 G 37 CMD
-G 59 CP
+G 60 CP
 G 38 COND
 S 39 fimse
 38
@@ -210,7 +211,7 @@ S 14 se
 G 36 ES
 G 37 CMD
 G 38 COND
-G 60 CP
+G 61 CP
 S 39 fimse
 39
 R 31 escreva
@@ -224,8 +225,9 @@ R 31 se
 40
 S 56 id
 S 57 num
-G 61 EXP_R
-G 62 OPRD
+G 62 EXP_R
+G 63 OPRD
+G 64 ERRO1
 41
 R 32 $
 42
@@ -242,7 +244,7 @@ S 11 id
 G 13 CAB
 S 14 se
 G 43 ES
-G 63 CPR
+G 65 CPR
 G 44 CMD
 G 45 COND
 S 46 fimrepita
@@ -254,7 +256,7 @@ G 13 CAB
 S 14 se
 G 43 ES
 G 44 CMD
-G 64 CPR
+G 66 CPR
 G 45 COND
 S 46 fimrepita
 45
@@ -266,7 +268,7 @@ S 14 se
 G 43 ES
 G 44 CMD
 G 45 COND
-G 65 CPR
+G 67 CPR
 S 46 fimrepita
 46
 R 38 escreva
@@ -278,8 +280,9 @@ R 38 se
 47
 S 56 id
 S 57 num
-G 62 OPRD
-G 66 EXP_R
+G 63 OPRD
+G 68 EXP_R
+G 64 ERRO1
 48
 R 4 escreva
 R 4 fim
@@ -295,10 +298,10 @@ R 5 leia
 R 5 repita
 R 5 se
 50
-S 67 pt_v
+S 69 pt_v
 51
 R 8 pt_v
-S 68 vir
+S 70 vir
 52
 R 13 escreva
 R 13 fim
@@ -318,21 +321,30 @@ R 14 leia
 R 14 repita
 R 14 se
 54
-S 69 pt_v
+S 71 pt_v
 55
 R 21 pt_v
-S 70 opm
+S 72 opm
+S 56 id
+S 57 num
+G 73 OPRD
 56
 R 22 fc_p
+R 22 id
+R 22 num
 R 22 opm
 R 22 opr
 R 22 pt_v
 57
 R 23 fc_p
+R 23 id
+R 23 num
 R 23 opm
 R 23 opr
 R 23 pt_v
 58
+R 41 pt_v
+59
 R 28 escreva
 R 28 fim
 R 28 fimrepita
@@ -341,7 +353,7 @@ R 28 id
 R 28 leia
 R 28 repita
 R 28 se
-59
+60
 R 29 escreva
 R 29 fim
 R 29 fimrepita
@@ -350,7 +362,7 @@ R 29 id
 R 29 leia
 R 29 repita
 R 29 se
-60
+61
 R 30 escreva
 R 30 fim
 R 30 fimrepita
@@ -359,42 +371,47 @@ R 30 id
 R 30 leia
 R 30 repita
 R 30 se
-61
-S 71 fc_p
 62
-S 72 opr
+S 74 fc_p
 63
+S 56 id
+S 57 num
+S 75 opr
+G 73 OPRD
+64
+R 42 fc_p
+65
 R 35 escreva
 R 35 fim
 R 35 id
 R 35 leia
 R 35 repita
 R 35 se
-64
+66
 R 36 escreva
 R 36 fim
 R 36 id
 R 36 leia
 R 36 repita
 R 36 se
-65
+67
 R 37 escreva
 R 37 fim
 R 37 id
 R 37 leia
 R 37 repita
 R 37 se
-66
-S 73 fc_p
-67
+68
+S 76 fc_p
+69
 R 6 inteiro
 R 6 literal
 R 6 real
 R 6 varfim
-68
+70
 S 51 id
-G 74 L
-69
+G 77 L
+71
 R 19 escreva
 R 19 fim
 R 19 fimrepita
@@ -403,31 +420,34 @@ R 19 id
 R 19 leia
 R 19 repita
 R 19 se
-70
-G 75 OPRD
-S 56 id
-S 57 num
-71
-S 76 entao
 72
+G 78 OPRD
 S 56 id
 S 57 num
-G 77 OPRD
 73
+R 40 fc_p
+R 40 pt_v
+74
+S 79 entao
+75
+S 56 id
+S 57 num
+G 80 OPRD
+76
 R 34 escreva
 R 34 fimrepita
 R 34 id
 R 34 leia
 R 34 se
-74
+77
 R 7 pt_v
-75
+78
 R 20 pt_v
-76
+79
 R 26 escreva
 R 26 fimse
 R 26 id
 R 26 leia
 R 26 se
-77
+80
 R 27 fc_p

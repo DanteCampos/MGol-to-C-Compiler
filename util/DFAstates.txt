@@ -165,6 +165,8 @@
 21 LD . OPRD 
 22 OPRD . id 
 23 OPRD . num 
+40 ERRO1 . OPRD OPRD 
+41 LD . ERRO1 
 34
 24 A COND A . 
 35
@@ -209,6 +211,8 @@
 23 OPRD . num 
 26 CAB se ab_p . EXP_R fc_p entao 
 27 EXP_R . OPRD opr OPRD 
+40 ERRO1 . OPRD OPRD 
+42 EXP_R . ERRO1 
 41
 32 A R A . 
 42
@@ -253,6 +257,8 @@
 23 OPRD . num 
 27 EXP_R . OPRD opr OPRD 
 34 CABR repita ab_p . EXP_R fc_p 
+40 ERRO1 . OPRD OPRD 
+42 EXP_R . ERRO1 
 48
 4 LV D LV . 
 49
@@ -271,53 +277,65 @@
 55
 20 LD OPRD . opm OPRD 
 21 LD OPRD . 
+22 OPRD . id 
+23 OPRD . num 
+40 ERRO1 OPRD . OPRD 
 56
 22 OPRD id . 
 57
 23 OPRD num . 
 58
-28 CP ES CP . 
+41 LD ERRO1 . 
 59
-29 CP CMD CP . 
+28 CP ES CP . 
 60
-30 CP COND CP . 
+29 CP CMD CP . 
 61
-26 CAB se ab_p EXP_R . fc_p entao 
+30 CP COND CP . 
 62
-27 EXP_R OPRD . opr OPRD 
+26 CAB se ab_p EXP_R . fc_p entao 
 63
-35 CPR ES CPR . 
+22 OPRD . id 
+23 OPRD . num 
+27 EXP_R OPRD . opr OPRD 
+40 ERRO1 OPRD . OPRD 
 64
-36 CPR CMD CPR . 
+42 EXP_R ERRO1 . 
 65
-37 CPR COND CPR . 
+35 CPR ES CPR . 
 66
-34 CABR repita ab_p EXP_R . fc_p 
+36 CPR CMD CPR . 
 67
-6 D TIPO L pt_v . 
+37 CPR COND CPR . 
 68
+34 CABR repita ab_p EXP_R . fc_p 
+69
+6 D TIPO L pt_v . 
+70
 7 L . id vir L 
 7 L id vir . L 
 8 L . id 
-69
+71
 19 CMD id rcb LD pt_v . 
-70
+72
 20 LD OPRD opm . OPRD 
 22 OPRD . id 
 23 OPRD . num 
-71
+73
+40 ERRO1 OPRD OPRD . 
+74
 26 CAB se ab_p EXP_R fc_p . entao 
-72
+75
 22 OPRD . id 
 23 OPRD . num 
 27 EXP_R OPRD opr . OPRD 
-73
-34 CABR repita ab_p EXP_R fc_p . 
-74
-7 L id vir L . 
-75
-20 LD OPRD opm OPRD . 
 76
-26 CAB se ab_p EXP_R fc_p entao . 
+34 CABR repita ab_p EXP_R fc_p . 
 77
+7 L id vir L . 
+78
+20 LD OPRD opm OPRD . 
+79
+26 CAB se ab_p EXP_R fc_p entao . 
+80
 27 EXP_R OPRD opr OPRD . 

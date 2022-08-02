@@ -1,4 +1,4 @@
-#pragma once
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -94,6 +94,7 @@ int main()
         ss>>t;
         pair<string,vector<string>> at;
         at.first = t;
+        cout<<t<<'\n';
         if(!initial)
         {
             initial=1;
