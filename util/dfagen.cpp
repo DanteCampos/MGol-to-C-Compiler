@@ -4,12 +4,12 @@ using namespace std;
 
 map<vector<pair<int,int>>,int> mp;
 vector<pair<string,vector<string>>> rules;
-set<pair<int,int>> substate[110];
+set<pair<int,int>> substate[510];
 map<string,set<pair<int,int>>> edges;
 map<string,vector<int>> myr;
 map<string,vector<string>> first;
 map<string,vector<pair<int,string>>> follow;
-int vis[110],vt=0;
+int vis[510],vt=0;
 void gensub(int id)
 {
     vt++;
