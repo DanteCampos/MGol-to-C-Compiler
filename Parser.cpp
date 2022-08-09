@@ -63,24 +63,26 @@ int main(int argc, char** argv){
     // Movement readed from the DFA
     // 'S' = Shift, 'R' = Reduce, "Error", "Accept"
     char mov; 
-
+    int stoppls;
     std::stack<int> Stack; // Stack of states and tokens
     Stack.push(1); // Initial state = 1
     std::tie(tk, line, column) = scanner.SCANNER(); // Get first token
-    
     while (true){ // Loop: Read next token and move to next state
         std::string mv;
         int at;
         
         //Getting the movement from the Syntax DFA
         std::tie(mv,at) = dfa_syntax.ACTION(Stack.top(),tk.lex_class);
+
         // std::cout<<Stack.top()<<" "<<tk.lex_class<<'\n';
         // std::cout<<mv<<" "<<at<<'\n';
        
         if( mv == "S"){ // Shift
             Stack.push(at); // Push state
+            if(tk.lex=="EOF")
+                break;
             std::tie(tk,line,column) = scanner.SCANNER();
-
+            // std::cout<<tk.lex<<' '<<line<<' '<<column<<'\n';
         }else if( mv == "R"){ // Reduce
             int qtd = dfa_syntax.sizeSTATE(at); // How many states will be removed
             std::string non_terminal = dfa_syntax.showSTATE(at); // Show the rule used to reduce, get the left side of derivation
@@ -89,12 +91,13 @@ int main(int argc, char** argv){
             
             // Checking if rule reduced is an error
             if (non_terminal.find("ERS") != std::string::npos){
+                // std::cin>>stoppls;
                 std::string code = non_terminal; // Known error
                 std::cout<<"Syntatic Error " << code << " - " << errorMessageMap[code] <<" at line "<<line<<", column "<<column<<'\n';
                 valid = false;
             }
 
-            // std::cout<<Stack.top()<<" "<<mydfa.GOTO(Stack.top(),mydfa.initial(at))<<'\n';
+            // std::cout<<"GO "<<Stack.top()<<" "<<dfa_syntax.GOTO(Stack.top(),dfa_syntax.initial(at))<<'\n';
             
             // Push the symbol at the left side of the rule used in the reduction
             Stack.push(dfa_syntax.GOTO(Stack.top(),dfa_syntax.initial(at)));
@@ -103,8 +106,10 @@ int main(int argc, char** argv){
             std::cout<<"Syntatic Error " << code << " - " << errorMessageMap[code] <<" at line "<<line<<", column "<<column<<'\n';
             break;
         }else{ // Accept
-            dfa_syntax.showSTATE(at);
-            std::cout<<"Code accepted.\n";
+            if(valid){
+                dfa_syntax.showSTATE(at);
+                std::cout<<"Code accepted.\n";
+            }
             break;
         }
     }

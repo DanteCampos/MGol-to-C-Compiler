@@ -141,6 +141,7 @@ class Scanner{
                 returnToken = Token(lexem, "ERROR", code);
                 returnLine = line;
                 std::cout << "Lexical Error " << code << " - " << errorMessageMap[code] << " at line " << returnLine << " and column " << returnColumn << "\n";
+                return SCANNER();
             }
 
             // Call again function since Comment should be ignored by the scanner

@@ -1,12 +1,200 @@
 1
 1 Plinha . P 
 2 P . inicio V A 
+3 V . varinicio LV 
+4 LV . D LV 
+5 LV . varfim pt_v 
+6 D . TIPO L pt_v 
+7 L . id vir L 
+8 L . id 
+9 TIPO . inteiro 
+10 TIPO . real 
+11 TIPO . literal 
+40 P . ERS1 
+41 ERS1 . V A 
+42 V . ERS2 
+43 ERS2 . LV 
+44 LV . ERS3 
+45 ERS3 . pt_v 
+46 L . ERS4 
+47 ERS4 . id L 
+48 D . ERS6 
+49 ERS6 . L pt_v 
+87 LV . ERS27 
+88 ERS27 . varfim 
+89 D . ERS28 
+90 ERS28 . TIPO L 
+103 P . ERS38 
+104 ERS38 . inicio V 
 2
 1 Plinha P . 
 3
 2 P inicio . V A 
 3 V . varinicio LV 
+4 LV . D LV 
+5 LV . varfim pt_v 
+6 D . TIPO L pt_v 
+7 L . id vir L 
+8 L . id 
+9 TIPO . inteiro 
+10 TIPO . real 
+11 TIPO . literal 
+42 V . ERS2 
+43 ERS2 . LV 
+44 LV . ERS3 
+45 ERS3 . pt_v 
+46 L . ERS4 
+47 ERS4 . id L 
+48 D . ERS6 
+49 ERS6 . L pt_v 
+87 LV . ERS27 
+88 ERS27 . varfim 
+89 D . ERS28 
+90 ERS28 . TIPO L 
+104 ERS38 inicio . V 
 4
+3 V varinicio . LV 
+4 LV . D LV 
+5 LV . varfim pt_v 
+6 D . TIPO L pt_v 
+7 L . id vir L 
+8 L . id 
+9 TIPO . inteiro 
+10 TIPO . real 
+11 TIPO . literal 
+44 LV . ERS3 
+45 ERS3 . pt_v 
+46 L . ERS4 
+47 ERS4 . id L 
+48 D . ERS6 
+49 ERS6 . L pt_v 
+87 LV . ERS27 
+88 ERS27 . varfim 
+89 D . ERS28 
+90 ERS28 . TIPO L 
+5
+4 LV . D LV 
+4 LV D . LV 
+5 LV . varfim pt_v 
+6 D . TIPO L pt_v 
+7 L . id vir L 
+8 L . id 
+9 TIPO . inteiro 
+10 TIPO . real 
+11 TIPO . literal 
+44 LV . ERS3 
+45 ERS3 . pt_v 
+46 L . ERS4 
+47 ERS4 . id L 
+48 D . ERS6 
+49 ERS6 . L pt_v 
+87 LV . ERS27 
+88 ERS27 . varfim 
+89 D . ERS28 
+90 ERS28 . TIPO L 
+6
+5 LV varfim . pt_v 
+88 ERS27 varfim . 
+7
+6 D TIPO . L pt_v 
+7 L . id vir L 
+8 L . id 
+46 L . ERS4 
+47 ERS4 . id L 
+90 ERS28 TIPO . L 
+8
+7 L . id vir L 
+7 L id . vir L 
+8 L . id 
+8 L id . 
+46 L . ERS4 
+47 ERS4 . id L 
+47 ERS4 id . L 
+9
+9 TIPO inteiro . 
+10
+10 TIPO real . 
+11
+11 TIPO literal . 
+12
+40 P ERS1 . 
+13
+12 A . ES A 
+13 ES . leia id pt_v 
+14 ES . escreva ARG pt_v 
+18 A . CMD A 
+19 CMD . id rcb LD pt_v 
+24 A . COND A 
+25 COND . CAB CP 
+26 CAB . se ab_p EXP_R fc_p entao 
+32 A . R A 
+33 R . CABR CPR 
+34 CABR . repita ab_p EXP_R fc_p 
+39 A . fim 
+41 ERS1 V . A 
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+75 CABR . ERS20 
+76 ERS20 . repita EXP_R fc_p 
+77 CABR . ERS21 
+78 ERS21 . repita ab_p EXP_R 
+79 CABR . ERS22 
+80 ERS22 . repita ab_p fc_p 
+81 CABR . ERS23 
+82 ERS23 . repita EXP_R 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+85 R . ERS25 
+86 ERS25 . CABR 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+105 A . ERS42 
+106 ERS42 . R 
+14
+42 V ERS2 . 
+15
+43 ERS2 LV . 
+16
+44 LV ERS3 . 
+17
+45 ERS3 pt_v . 
+18
+46 L ERS4 . 
+19
+48 D ERS6 . 
+20
+49 ERS6 L . pt_v 
+21
+87 LV ERS27 . 
+22
+89 D ERS28 . 
+23
+103 P ERS38 . 
+24
 2 P inicio V . A 
 12 A . ES A 
 13 ES . leia id pt_v 
@@ -20,17 +208,67 @@
 33 R . CABR CPR 
 34 CABR . repita ab_p EXP_R fc_p 
 39 A . fim 
-5
-3 V varinicio . LV 
-4 LV . D LV 
-5 LV . varfim pt_v 
-6 D . TIPO L pt_v 
-9 TIPO . inteiro 
-10 TIPO . real 
-11 TIPO . literal 
-6
-2 P inicio V A . 
-7
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+75 CABR . ERS20 
+76 ERS20 . repita EXP_R fc_p 
+77 CABR . ERS21 
+78 ERS21 . repita ab_p EXP_R 
+79 CABR . ERS22 
+80 ERS22 . repita ab_p fc_p 
+81 CABR . ERS23 
+82 ERS23 . repita EXP_R 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+85 R . ERS25 
+86 ERS25 . CABR 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+104 ERS38 inicio V . 
+105 A . ERS42 
+106 ERS42 . R 
+25
+3 V varinicio LV . 
+26
+4 LV D LV . 
+27
+5 LV varfim pt_v . 
+28
+6 D TIPO L . pt_v 
+90 ERS28 TIPO L . 
+29
+7 L . id vir L 
+7 L id vir . L 
+8 L . id 
+46 L . ERS4 
+47 ERS4 . id L 
+30
+47 ERS4 id L . 
+31
 12 A . ES A 
 12 A ES . A 
 13 ES . leia id pt_v 
@@ -44,14 +282,60 @@
 33 R . CABR CPR 
 34 CABR . repita ab_p EXP_R fc_p 
 39 A . fim 
-8
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+75 CABR . ERS20 
+76 ERS20 . repita EXP_R fc_p 
+77 CABR . ERS21 
+78 ERS21 . repita ab_p EXP_R 
+79 CABR . ERS22 
+80 ERS22 . repita ab_p fc_p 
+81 CABR . ERS23 
+82 ERS23 . repita EXP_R 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+85 R . ERS25 
+86 ERS25 . CABR 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+105 A . ERS42 
+106 ERS42 . R 
+32
 13 ES leia . id pt_v 
-9
+51 ERS7 leia . pt_v 
+92 ERS29 leia . id 
+33
 14 ES escreva . ARG pt_v 
 15 ARG . lit 
 16 ARG . num 
 17 ARG . id 
-10
+53 ERS8 escreva . pt_v 
+94 ERS30 escreva . ARG 
+34
 12 A . ES A 
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
@@ -65,9 +349,60 @@
 33 R . CABR CPR 
 34 CABR . repita ab_p EXP_R fc_p 
 39 A . fim 
-11
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+75 CABR . ERS20 
+76 ERS20 . repita EXP_R fc_p 
+77 CABR . ERS21 
+78 ERS21 . repita ab_p EXP_R 
+79 CABR . ERS22 
+80 ERS22 . repita ab_p fc_p 
+81 CABR . ERS23 
+82 ERS23 . repita EXP_R 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+85 R . ERS25 
+86 ERS25 . CABR 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+105 A . ERS42 
+106 ERS42 . R 
+35
 19 CMD id . rcb LD pt_v 
-12
+20 LD . OPRD opm OPRD 
+21 LD . OPRD 
+22 OPRD . id 
+23 OPRD . num 
+57 ERS10 id . LD pt_v 
+59 ERS11 id . rcb pt_v 
+60 LD . ERS12 
+62 ERS12 . OPRD OPRD 
+96 ERS31 id . rcb LD 
+36
 12 A . ES A 
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
@@ -81,7 +416,49 @@
 33 R . CABR CPR 
 34 CABR . repita ab_p EXP_R fc_p 
 39 A . fim 
-13
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+75 CABR . ERS20 
+76 ERS20 . repita EXP_R fc_p 
+77 CABR . ERS21 
+78 ERS21 . repita ab_p EXP_R 
+79 CABR . ERS22 
+80 ERS22 . repita ab_p fc_p 
+81 CABR . ERS23 
+82 ERS23 . repita EXP_R 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+85 R . ERS25 
+86 ERS25 . CABR 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+105 A . ERS42 
+106 ERS42 . R 
+37
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
 19 CMD . id rcb LD pt_v 
@@ -92,9 +469,56 @@
 29 CP . CMD CP 
 30 CP . COND CP 
 31 CP . fimse 
-14
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+74 ERS18 CAB . 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+97 CP . ERS32 
+98 ERS32 . ES 
+99 CP . ERS33 
+100 ERS33 . CMD 
+101 CP . ERS34 
+102 ERS34 . COND 
+38
+22 OPRD . id 
+23 OPRD . num 
 26 CAB se . ab_p EXP_R fc_p entao 
-15
+27 EXP_R . OPRD opr OPRD 
+61 EXP_R . ERS12 
+62 ERS12 . OPRD OPRD 
+64 ERS13 se . EXP_R fc_p entao 
+66 ERS14 se . ab_p EXP_R entao 
+68 ERS15 se . ab_p fc_p entao 
+70 ERS16 se . ab_p EXP_R fc_p 
+84 ERS24 se . EXP_R entao 
+39
 12 A . ES A 
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
@@ -108,7 +532,50 @@
 33 R . CABR CPR 
 34 CABR . repita ab_p EXP_R fc_p 
 39 A . fim 
-16
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+75 CABR . ERS20 
+76 ERS20 . repita EXP_R fc_p 
+77 CABR . ERS21 
+78 ERS21 . repita ab_p EXP_R 
+79 CABR . ERS22 
+80 ERS22 . repita ab_p fc_p 
+81 CABR . ERS23 
+82 ERS23 . repita EXP_R 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+85 R . ERS25 
+86 ERS25 . CABR 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+105 A . ERS42 
+106 ERS42 . R 
+106 ERS42 R . 
+40
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
 19 CMD . id rcb LD pt_v 
@@ -119,59 +586,166 @@
 36 CPR . CMD CPR 
 37 CPR . COND CPR 
 38 CPR . fimrepita 
-17
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+86 ERS25 CABR . 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+41
+22 OPRD . id 
+23 OPRD . num 
+27 EXP_R . OPRD opr OPRD 
 34 CABR repita . ab_p EXP_R fc_p 
-18
+61 EXP_R . ERS12 
+62 ERS12 . OPRD OPRD 
+76 ERS20 repita . EXP_R fc_p 
+78 ERS21 repita . ab_p EXP_R 
+80 ERS22 repita . ab_p fc_p 
+82 ERS23 repita . EXP_R 
+42
 39 A fim . 
-19
-3 V varinicio LV . 
-20
-4 LV . D LV 
-4 LV D . LV 
-5 LV . varfim pt_v 
-6 D . TIPO L pt_v 
-9 TIPO . inteiro 
-10 TIPO . real 
-11 TIPO . literal 
-21
-5 LV varfim . pt_v 
-22
-6 D TIPO . L pt_v 
-7 L . id vir L 
-8 L . id 
-23
-9 TIPO inteiro . 
-24
-10 TIPO real . 
-25
-11 TIPO literal . 
-26
+43
+41 ERS1 V A . 
+44
+50 ES ERS7 . 
+45
+52 ES ERS8 . 
+46
+54 CMD ERS9 . 
+47
+20 LD . OPRD opm OPRD 
+21 LD . OPRD 
+22 OPRD . id 
+23 OPRD . num 
+55 ERS9 rcb . LD pt_v 
+60 LD . ERS12 
+62 ERS12 . OPRD OPRD 
+48
+56 CMD ERS10 . 
+49
+58 CMD ERS11 . 
+50
+63 CAB ERS13 . 
+51
+65 CAB ERS14 . 
+52
+67 CAB ERS15 . 
+53
+69 CAB ERS16 . 
+54
+71 CAB ERS17 . 
+55
+22 OPRD . id 
+23 OPRD . num 
+27 EXP_R . OPRD opr OPRD 
+61 EXP_R . ERS12 
+62 ERS12 . OPRD OPRD 
+72 ERS17 ab_p . EXP_R fc_p entao 
+56
+73 COND ERS18 . 
+57
+75 CABR ERS20 . 
+58
+77 CABR ERS21 . 
+59
+79 CABR ERS22 . 
+60
+81 CABR ERS23 . 
+61
+83 CAB ERS24 . 
+62
+85 R ERS25 . 
+63
+91 ES ERS29 . 
+64
+93 ES ERS30 . 
+65
+95 CMD ERS31 . 
+66
+105 A ERS42 . 
+67
+49 ERS6 L pt_v . 
+68
+2 P inicio V A . 
+69
+6 D TIPO L pt_v . 
+70
+7 L id vir L . 
+71
 12 A ES A . 
-27
+72
 13 ES leia id . pt_v 
-28
+92 ERS29 leia id . 
+73
+51 ERS7 leia pt_v . 
+74
 14 ES escreva ARG . pt_v 
-29
+94 ERS30 escreva ARG . 
+75
 15 ARG lit . 
-30
+76
 16 ARG num . 
-31
+77
 17 ARG id . 
-32
+78
+53 ERS8 escreva pt_v . 
+79
 18 A CMD A . 
-33
+80
 19 CMD id rcb . LD pt_v 
 20 LD . OPRD opm OPRD 
 21 LD . OPRD 
 22 OPRD . id 
 23 OPRD . num 
-40 ERRO1 . OPRD OPRD 
-41 LD . ERRO1 
-34
+59 ERS11 id rcb . pt_v 
+60 LD . ERS12 
+62 ERS12 . OPRD OPRD 
+96 ERS31 id rcb . LD 
+81
+20 LD OPRD . opm OPRD 
+21 LD OPRD . 
+22 OPRD . id 
+23 OPRD . num 
+62 ERS12 OPRD . OPRD 
+82
+22 OPRD id . 
+83
+23 OPRD num . 
+84
+57 ERS10 id LD . pt_v 
+85
+60 LD ERS12 . 
+86
 24 A COND A . 
-35
+87
 25 COND CAB CP . 
-36
+88
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
 19 CMD . id rcb LD pt_v 
@@ -182,7 +756,44 @@
 29 CP . CMD CP 
 30 CP . COND CP 
 31 CP . fimse 
-37
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+97 CP . ERS32 
+98 ERS32 . ES 
+98 ERS32 ES . 
+99 CP . ERS33 
+100 ERS33 . CMD 
+101 CP . ERS34 
+102 ERS34 . COND 
+89
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
 19 CMD . id rcb LD pt_v 
@@ -193,7 +804,44 @@
 29 CP CMD . CP 
 30 CP . COND CP 
 31 CP . fimse 
-38
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+97 CP . ERS32 
+98 ERS32 . ES 
+99 CP . ERS33 
+100 ERS33 . CMD 
+100 ERS33 CMD . 
+101 CP . ERS34 
+102 ERS34 . COND 
+90
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
 19 CMD . id rcb LD pt_v 
@@ -204,20 +852,76 @@
 30 CP . COND CP 
 30 CP COND . CP 
 31 CP . fimse 
-39
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+97 CP . ERS32 
+98 ERS32 . ES 
+99 CP . ERS33 
+100 ERS33 . CMD 
+101 CP . ERS34 
+102 ERS34 . COND 
+102 ERS34 COND . 
+91
 31 CP fimse . 
-40
+92
+97 CP ERS32 . 
+93
+99 CP ERS33 . 
+94
+101 CP ERS34 . 
+95
 22 OPRD . id 
 23 OPRD . num 
 26 CAB se ab_p . EXP_R fc_p entao 
 27 EXP_R . OPRD opr OPRD 
-40 ERRO1 . OPRD OPRD 
-42 EXP_R . ERRO1 
-41
+61 EXP_R . ERS12 
+62 ERS12 . OPRD OPRD 
+66 ERS14 se ab_p . EXP_R entao 
+68 ERS15 se ab_p . fc_p entao 
+70 ERS16 se ab_p . EXP_R fc_p 
+96
+22 OPRD . id 
+23 OPRD . num 
+27 EXP_R OPRD . opr OPRD 
+62 ERS12 OPRD . OPRD 
+97
+61 EXP_R ERS12 . 
+98
+64 ERS13 se EXP_R . fc_p entao 
+84 ERS24 se EXP_R . entao 
+99
 32 A R A . 
-42
+100
 33 R CABR CPR . 
-43
+101
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
 19 CMD . id rcb LD pt_v 
@@ -228,7 +932,37 @@
 36 CPR . CMD CPR 
 37 CPR . COND CPR 
 38 CPR . fimrepita 
-44
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+102
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
 19 CMD . id rcb LD pt_v 
@@ -239,7 +973,37 @@
 36 CPR CMD . CPR 
 37 CPR . COND CPR 
 38 CPR . fimrepita 
-45
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+103
 13 ES . leia id pt_v 
 14 ES . escreva ARG pt_v 
 19 CMD . id rcb LD pt_v 
@@ -250,92 +1014,126 @@
 37 CPR . COND CPR 
 37 CPR COND . CPR 
 38 CPR . fimrepita 
-46
+50 ES . ERS7 
+51 ERS7 . leia pt_v 
+52 ES . ERS8 
+53 ERS8 . escreva pt_v 
+54 CMD . ERS9 
+55 ERS9 . rcb LD pt_v 
+56 CMD . ERS10 
+57 ERS10 . id LD pt_v 
+58 CMD . ERS11 
+59 ERS11 . id rcb pt_v 
+63 CAB . ERS13 
+64 ERS13 . se EXP_R fc_p entao 
+65 CAB . ERS14 
+66 ERS14 . se ab_p EXP_R entao 
+67 CAB . ERS15 
+68 ERS15 . se ab_p fc_p entao 
+69 CAB . ERS16 
+70 ERS16 . se ab_p EXP_R fc_p 
+71 CAB . ERS17 
+72 ERS17 . ab_p EXP_R fc_p entao 
+73 COND . ERS18 
+74 ERS18 . CAB 
+83 CAB . ERS24 
+84 ERS24 . se EXP_R entao 
+91 ES . ERS29 
+92 ERS29 . leia id 
+93 ES . ERS30 
+94 ERS30 . escreva ARG 
+95 CMD . ERS31 
+96 ERS31 . id rcb LD 
+104
 38 CPR fimrepita . 
-47
+105
 22 OPRD . id 
 23 OPRD . num 
 27 EXP_R . OPRD opr OPRD 
 34 CABR repita ab_p . EXP_R fc_p 
-40 ERRO1 . OPRD OPRD 
-42 EXP_R . ERRO1 
-48
-4 LV D LV . 
-49
-5 LV varfim pt_v . 
-50
-6 D TIPO L . pt_v 
-51
-7 L id . vir L 
-8 L id . 
-52
+61 EXP_R . ERS12 
+62 ERS12 . OPRD OPRD 
+78 ERS21 repita ab_p . EXP_R 
+80 ERS22 repita ab_p . fc_p 
+106
+76 ERS20 repita EXP_R . fc_p 
+82 ERS23 repita EXP_R . 
+107
+55 ERS9 rcb LD . pt_v 
+108
+72 ERS17 ab_p EXP_R . fc_p entao 
+109
 13 ES leia id pt_v . 
-53
+110
 14 ES escreva ARG pt_v . 
-54
+111
 19 CMD id rcb LD . pt_v 
-55
-20 LD OPRD . opm OPRD 
-21 LD OPRD . 
-22 OPRD . id 
-23 OPRD . num 
-40 ERRO1 OPRD . OPRD 
-56
-22 OPRD id . 
-57
-23 OPRD num . 
-58
-41 LD ERRO1 . 
-59
-28 CP ES CP . 
-60
-29 CP CMD CP . 
-61
-30 CP COND CP . 
-62
-26 CAB se ab_p EXP_R . fc_p entao 
-63
-22 OPRD . id 
-23 OPRD . num 
-27 EXP_R OPRD . opr OPRD 
-40 ERRO1 OPRD . OPRD 
-64
-42 EXP_R ERRO1 . 
-65
-35 CPR ES CPR . 
-66
-36 CPR CMD CPR . 
-67
-37 CPR COND CPR . 
-68
-34 CABR repita ab_p EXP_R . fc_p 
-69
-6 D TIPO L pt_v . 
-70
-7 L . id vir L 
-7 L id vir . L 
-8 L . id 
-71
-19 CMD id rcb LD pt_v . 
-72
+96 ERS31 id rcb LD . 
+112
+59 ERS11 id rcb pt_v . 
+113
 20 LD OPRD opm . OPRD 
 22 OPRD . id 
 23 OPRD . num 
-73
-40 ERRO1 OPRD OPRD . 
-74
-26 CAB se ab_p EXP_R fc_p . entao 
-75
+114
+62 ERS12 OPRD OPRD . 
+115
+57 ERS10 id LD pt_v . 
+116
+28 CP ES CP . 
+117
+29 CP CMD CP . 
+118
+30 CP COND CP . 
+119
+26 CAB se ab_p EXP_R . fc_p entao 
+66 ERS14 se ab_p EXP_R . entao 
+70 ERS16 se ab_p EXP_R . fc_p 
+120
+68 ERS15 se ab_p fc_p . entao 
+121
 22 OPRD . id 
 23 OPRD . num 
 27 EXP_R OPRD opr . OPRD 
-76
-34 CABR repita ab_p EXP_R fc_p . 
-77
-7 L id vir L . 
-78
+122
+64 ERS13 se EXP_R fc_p . entao 
+123
+84 ERS24 se EXP_R entao . 
+124
+35 CPR ES CPR . 
+125
+36 CPR CMD CPR . 
+126
+37 CPR COND CPR . 
+127
+34 CABR repita ab_p EXP_R . fc_p 
+78 ERS21 repita ab_p EXP_R . 
+128
+80 ERS22 repita ab_p fc_p . 
+129
+76 ERS20 repita EXP_R fc_p . 
+130
+55 ERS9 rcb LD pt_v . 
+131
+72 ERS17 ab_p EXP_R fc_p . entao 
+132
+19 CMD id rcb LD pt_v . 
+133
 20 LD OPRD opm OPRD . 
-79
-26 CAB se ab_p EXP_R fc_p entao . 
-80
+134
+26 CAB se ab_p EXP_R fc_p . entao 
+70 ERS16 se ab_p EXP_R fc_p . 
+135
+66 ERS14 se ab_p EXP_R entao . 
+136
+68 ERS15 se ab_p fc_p entao . 
+137
 27 EXP_R OPRD opr OPRD . 
+138
+64 ERS13 se EXP_R fc_p entao . 
+139
+34 CABR repita ab_p EXP_R fc_p . 
+140
+72 ERS17 ab_p EXP_R fc_p entao . 
+141
+26 CAB se ab_p EXP_R fc_p entao . 

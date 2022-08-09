@@ -38,16 +38,22 @@ vector<pair<int,int>> tovec(set<pair<int,int>> at)
     return now;   
 }
 
-
+map<string,int> firstvis,followvis;
+int cs = 1;
 set<string> calcfirst(string now)
 {
+    firstvis[now] = cs;
     set<string> resp,us;
     if((now[0]>='a' && now[0]<='z') || now=="$"){
         // cout<<now<<"\n";
         resp.insert(now);
         return resp;
     }
+    // cout<<now<<" aaaa\n";
+
     for(auto c:first[now]){
+        if(firstvis[c]==cs)
+            continue;
         us = calcfirst(c);
         for(auto at:us){
             resp.insert(at);
@@ -58,20 +64,24 @@ set<string> calcfirst(string now)
 
 set<string> calcfollow(string now)
 {
-    // cout<<now<<" aaaa\n";
     // int x;
     // cin>>x;
+    followvis[now]=cs;
     set<string> resp,us;
     for(auto c:follow[now]){
+
         // cout<<c.second<<'\n';
         if(c.first){
-            if(c.second==now)
+            if(c.second==now || followvis[c.second]==cs)
                 continue;
             us = calcfollow(c.second);
             for(auto at:us)
                 resp.insert(at);
         }else
         {
+            // cout<<"OPA\n";
+            if(firstvis[c.second]==cs)
+                continue;
             us = calcfirst(c.second);
             for(auto at:us){
                 resp.insert(at);
@@ -137,21 +147,30 @@ int main()
         
         edges.clear();
         vector<string> order;
+        map<string,int> used;
         for(auto at:substate[at])
         {
             foutst<<at.first + 1<<" "<<rules[at.first].first<<" ";
+            // cout<<at.first + 1<<" "<<rules[at.first].first<<"<<<\n";
+            
             if(at.second == rules[at.first].second.size()-1)
             {
                 // for(auto v:follow[rules[at.first].first])
                 //     cout<<v.second<<" ";
                 // cout<<"\n";
+                cs++;
                 for(auto v:calcfollow(rules[at.first].first))
                 {
                     if(!at.first && v=="$")
                         fouted<<"ACC ";
-                    else
+                    else{
                         fouted<<"R ";
-
+                    }
+                    if(used[v]==1){
+                        cout<<"JA USEI O "<<v<<" "<<at.first + 1<<"deu uma merda\n";
+                        exit(1);
+                    }
+                    used[v]=1;
                     fouted<<at.first + 1<<' '<<v<<"\n";
                 }
                 // int x;
