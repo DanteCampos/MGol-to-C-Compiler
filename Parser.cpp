@@ -65,6 +65,7 @@ int main(int argc, char** argv){
             // Push the symbol at the left side of the rule used in the reduction
             Stack.push(dfa_syntax.GOTO(Stack.top(),dfa_syntax.initial(at)));
         }else if(mv == "ERROR"){
+            valid = false;
             std::string code = "ERS0"; // Unknown error
             std::cout<<"Syntatic Error " << code << " - " << dfa_syntax.errorMessageMap[code] <<" at line "<<line<<", column "<<column<<'\n';
             break;
@@ -81,11 +82,10 @@ int main(int argc, char** argv){
 
     if(!valid)
         return 0;
-    std::cout<<Stack.top()<<"\n";
     scanner.back();
     gen.start_code();
     std::tie(tk, line, column) = scanner.SCANNER(valid); // Get first token
-    std::cout<<tk.lex<<' '<<tk.lex_class<<' '<<tk.type<<"\n";
+    // std::cout<<tk.lex<<' '<<tk.lex_class<<' '<<tk.type<<"\n";
     
     while (true){ // Loop: Read next token and move to next state
         std::string mv;
