@@ -17,6 +17,7 @@ class Scanner{
         char last;
         SymbolsTable *table;
         DFA dfa;
+        std::string fpath;
         //std::string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_<>=+-/*\"{}(),;\\";
         std::map <std::string, std::string> errorMessageMap={
             {"ERL1", "Invalid character"},
@@ -42,6 +43,7 @@ class Scanner{
     public:
         Scanner(std::string filePath,SymbolsTable *symbolstable){
             archive.open(filePath);
+            fpath = filePath;
             line = 0;
             column = 0;
             haveLast=false;
@@ -54,7 +56,15 @@ class Scanner{
             return archive.is_open();
         }
 
-        std::tuple<Token,int,int> SCANNER(){
+        void back(){
+            archive.close();
+            archive.open(fpath);
+            line = 0;
+            column = 0;
+            haveLast=false;
+        }
+
+        std::tuple<Token,int,int> SCANNER(bool &valid){
             char actualChar,firstChar=0,lastChar;
             std::string lexem;
             int initialLine,initialColumn;
@@ -140,13 +150,14 @@ class Scanner{
                 
                 returnToken = Token(lexem, "ERROR", code);
                 returnLine = line;
+                valid = false;
                 std::cout << "Lexical Error " << code << " - " << errorMessageMap[code] << " at line " << returnLine << " and column " << returnColumn << "\n";
-                return SCANNER();
+                return SCANNER(valid);
             }
 
             // Call again function since Comment should be ignored by the scanner
             if(stateClass=="Comment")
-                return SCANNER();
+                return SCANNER(valid);
 
             // Updating symbol table
             if(stateClass=="id"){

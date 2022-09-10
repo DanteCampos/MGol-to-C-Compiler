@@ -142,12 +142,12 @@ class DFA {
             };
 
             numTypeMap = {
-                {1, "Real"},
-                {19, "Real"},
-                {27, "Real"},
-                {17, "Int"},
-                {25, "Int"},
-                {26, "Int"}
+                {1, "real"},
+                {19, "real"},
+                {27, "real"},
+                {17, "inteiro"},
+                {25, "inteiro"},
+                {26, "inteiro"}
             };
         };
 
