@@ -13,7 +13,7 @@ private:
     SymbolsTable *table;
     DFAsintax dfa_syntax;
     std::ofstream output;
-    std::string global_type;
+    std::string global_type,global_exp_r;
     int temps;
     bool generating;
 public:
@@ -197,6 +197,7 @@ public:
             {
                 output<<"t"<<temps<<" = "<<tk.lex<<" "<<tk1.lex<<" "<<tk2.lex<<";\n";
             }
+            
             Stack.pop();
 
             tk.lex_class = "LD";
@@ -233,8 +234,9 @@ public:
             for (int i = 0; i < 2; i++)
                 Stack.pop();
             
-            if(generating)
+            if(generating){
                 output<<"}\n";
+            }
 
             tk.lex = tk.lex_class = tk.type = "COND";
             Stack.push(tk);
@@ -272,6 +274,7 @@ public:
             if(generating)
             {
                 output<<"t"<<temps<<" = "<<tk.lex<<" "<<tk1.lex<<" "<<tk2.lex<<";\n";
+                global_exp_r = "t"+std::to_string(temps)+" = "+tk.lex+" "+tk1.lex+" "+tk2.lex+";\n";
             }
             Stack.pop();
 
@@ -286,8 +289,10 @@ public:
             for (int i = 0; i < 2; i++)
                 Stack.pop();
             
-            if(generating)
+            if(generating){
+                output<<global_exp_r;
                 output<<"}\n";
+            }
 
             tk.lex = tk.lex_class = tk.type = "R";
             Stack.push(tk);

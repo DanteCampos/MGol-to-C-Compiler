@@ -1,0 +1,10 @@
+inicio
+varinicio
+inteiro N;
+varfim;
+N<-1;
+repita(N<20)
+    escreva N;
+    N<-N+1;
+fimrepita
+fim
