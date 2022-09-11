@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <stack>
+#include <stdio.h>
 #include "Token.cpp"
 #include "DFAsintax.cpp"
 #include "SymbolsTable.cpp"
@@ -13,7 +14,8 @@ class Generator
 private:
     SymbolsTable *table;
     DFAsintax dfa_syntax;
-    std::ofstream output;
+    std::ofstream output; // Used for non-beautified output
+    std::string filepath; // For beautified output
     std::string global_type,global_exp_r;
     int dtemps,itemps;
     bool generating;
@@ -21,7 +23,8 @@ public:
 
     std::stack<Token> Stack;
     Generator(std::string filePath,SymbolsTable *symbolstable){
-        output.open(filePath);
+        output.open("aux.c");
+        filepath = filePath;
         itemps = dtemps = 0;
         generating = false;
         table=symbolstable;
@@ -47,6 +50,23 @@ public:
         std::string s;
         while(getline(aux,s))
             output<<s<<"\n";
+        output.close();
+        
+        // Beautifying the output with tabs
+        std::ifstream aux2("aux.c");
+        std::ofstream real_output(filepath);
+        int tab = 0;
+        while (getline(aux2, s)) {
+            if (s.find("}") != std::string::npos)
+                tab--;
+            for(int i = 0; i < tab; i++)
+                real_output<<"\t";
+            real_output<<s<<"\n";
+            if (s.find("{") != std::string::npos)
+                tab++;
+        }
+        real_output.close();
+        remove("aux.c");
     }
     void reduction(int state,int line,int column,bool &valid){
         // if(!valid)
