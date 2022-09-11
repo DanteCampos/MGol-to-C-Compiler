@@ -54,9 +54,9 @@ public:
         Token tk,tk1,tk2;
 
         if(state == 7 || state == 8){
-            //L → id
             //L1 → id vir L2
-            if(state == 7){
+            //L → id
+            if(state == 7){ //L1 → id vir L2
                 Stack.pop();
                 Stack.pop();
             }
