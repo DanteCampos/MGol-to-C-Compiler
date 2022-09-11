@@ -1,0 +1,8 @@
+inicio
+varinicio
+real dtemp;
+inteiro itemp;
+varfim;
+itemp<-1+1;
+dtemp<-1.0+2.0;
+fim

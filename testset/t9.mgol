@@ -1,0 +1,9 @@
+inicio
+varinicio
+real A,B;
+inteiro C,D,A;
+varfim;
+C<-1;
+D<-C+2;
+A<-1;
+fim

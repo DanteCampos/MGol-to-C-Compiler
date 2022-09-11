@@ -15,14 +15,14 @@ private:
     DFAsintax dfa_syntax;
     std::ofstream output;
     std::string global_type,global_exp_r;
-    int temps;
+    int dtemps,itemps;
     bool generating;
 public:
 
     std::stack<Token> Stack;
     Generator(std::string filePath,SymbolsTable *symbolstable){
         output.open(filePath);
-        temps = 0;
+        itemps = dtemps = 0;
         generating = false;
         table=symbolstable;
     }
@@ -33,12 +33,14 @@ public:
         std::string s;
         while(getline(aux,s))
             output<<s<<"\n";
-        output<<"int t0";
-        for (int i = 1; i < temps; i++)
-            output<<", t"<<i;
-        output<<";\n";
+        if(itemps!=0)
+            output<<"int itemp["<<itemps<<"];\n";
+        
+        if(dtemps!=0)
+            output<<"double dtemp["<<dtemps<<"];\n";
+
         output<<"//codigo gerado\n";
-        temps = 0;
+        itemps = dtemps = 0;
     }
     void finish_code(){
         std::ifstream aux("util/baseend.c");
@@ -52,7 +54,7 @@ public:
         // std::cout<<state<<' ';
         // dfa_syntax.showSTATE(state);
         Token tk,tk1,tk2;
-
+        
         if(state == 7 || state == 8){
             //L → id
             //L1 → id vir L2
@@ -61,6 +63,12 @@ public:
                 Stack.pop();
             }
             tk = Stack.top();
+            tk1 = table->getSymbol(tk.lex);
+            if(tk1.type!="NULL")
+            {
+                valid = false;
+                std::cout<<"Semantic Error " << tk.lex<<" has already been declared at line "<<line<<", column "<<column<<'\n';
+            }
             tk.type = global_type;
             if(generating){
                 if(tk.type == "real")
@@ -72,6 +80,7 @@ public:
                 output<<";\n";
             }
             // std::cout<<tk.lex<<" "<<tk.lex_class<<' '<<tk.type<<"\n";
+            
             table->updateSymbol(tk);
             tk.lex = tk.lex_class = "L";
             Stack.pop();
@@ -170,19 +179,24 @@ public:
             if(tk.type!=tk2.type || tk.type == "literal"){
                 valid = false;
                 std::cout<<"Semantic Error Operands does not match "<<line<<", column "<<column<<'\n';
-            }else if(tk.type!=tk2.type){
-                valid = false;
-                std::cout<<"Semantic Error atribution types doesnt match at line "<<line<<", column "<<column<<'\n';
-            }if(generating){
-                output<<"t"<<temps<<" = "<<tk.lex<<" "<<tk1.lex<<" "<<tk2.lex<<";\n";
+            }
+            std::string aux;
+            if(tk.type == "inteiro")
+            {
+                aux = "itemp["+std::to_string(itemps++)+"]";
+            }else
+            {
+                aux = "dtemp["+std::to_string(dtemps++)+"]";
+            }
+            if(generating){
+                output<<aux<<" = "<<tk.lex<<" "<<tk1.lex<<" "<<tk2.lex<<";\n";
             }
             
             Stack.pop();
 
             tk.lex_class = "LD";
-            tk.lex = "t"+std::to_string(temps);
+            tk.lex = aux;
             Stack.push(tk);
-            temps++;
         }else if (state == 21){
             //LD → OPRD
             tk = Stack.top();
@@ -236,19 +250,18 @@ public:
             if(tk.type!=tk2.type || tk.type == "literal"){
                 valid = false;
                 std::cout<<"Semantic Error Operands does not match "<<line<<", column "<<column<<'\n';
-            }else if(tk.type!=tk2.type){
-                valid = false;
-                std::cout<<"Semantic Error atribution types doesnt match at line "<<line<<", column "<<column<<'\n';
-            }if(generating){
-                output<<"t"<<temps<<" = "<<tk.lex<<" "<<tk1.lex<<" "<<tk2.lex<<";\n";
-                global_exp_r = "t"+std::to_string(temps)+" = "+tk.lex+" "+tk1.lex+" "+tk2.lex+";\n";
+            }
+
+            std::string aux = "itemp["+std::to_string(itemps++)+"]";
+            if(generating){
+                output<<aux<<" = "<<tk.lex<<" "<<tk1.lex<<" "<<tk2.lex<<";\n";
+                global_exp_r = aux+" = "+tk.lex+" "+tk1.lex+" "+tk2.lex+";\n";
             }
             Stack.pop();
 
             tk.lex_class = "EXP_R";
-            tk.lex = "t"+std::to_string(temps);
+            tk.lex = aux;
             Stack.push(tk);
-            temps++;
         }
         else if (state == 33){
             //R → CABR CPR
