@@ -24,7 +24,9 @@ class SymbolsTable{
                 {"fim",Token("fim", "fim", "fim")},
                 {"inteiro",Token("inteiro", "inteiro", "inteiro")},
                 {"literal",Token("literal", "literal", "literal")},
-                {"real",Token("real", "real", "real")}
+                {"real",Token("real", "real", "real")},
+                {"itemp",Token("itemp", "itemp", "itemp")},
+                {"dtemp",Token("dtemp", "dtemp", "dtemp")}
             };
         }
         
