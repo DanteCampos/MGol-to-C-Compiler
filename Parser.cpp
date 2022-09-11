@@ -6,6 +6,7 @@
 #include "Token.cpp"
 #include "DFAsintax.cpp"
 
+// ./exec <source.mgol> <output filepath>
 int main(int argc, char** argv){
     SymbolsTable table;
     Scanner scanner(argv[1],&table);

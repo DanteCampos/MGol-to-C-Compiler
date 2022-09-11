@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <stack>
 #include "Token.cpp"
 #include "DFAsintax.cpp"
 #include "SymbolsTable.cpp"
@@ -25,8 +26,7 @@ public:
         generating = false;
         table=symbolstable;
     }
-    void start_code()
-    {
+    void start_code(){
         generating = true;
         //includes and init
         std::ifstream aux("util/baseinit.c");
@@ -40,15 +40,13 @@ public:
         output<<"//codigo gerado\n";
         temps = 0;
     }
-    void finish_code()
-    {
+    void finish_code(){
         std::ifstream aux("util/baseend.c");
         std::string s;
         while(getline(aux,s))
             output<<s<<"\n";
     }
-    void reduction(int state,int line,int column,bool &valid)
-    {
+    void reduction(int state,int line,int column,bool &valid){
         // if(!valid)
         //     return;
         // std::cout<<state<<' ';
@@ -64,8 +62,7 @@ public:
             }
             tk = Stack.top();
             tk.type = global_type;
-            if(generating)
-            {
+            if(generating){
                 if(tk.type == "real")
                     output<<"double "<<tk.lex;
                 else if (tk.type == "inteiro")
@@ -79,28 +76,24 @@ public:
             tk.lex = tk.lex_class = "L";
             Stack.pop();
             Stack.push(tk);
-        }else if (state>= 9 && state <=11)
-        {
-            //TIPO → ?
+        }else if (state>= 9 && state <=11){
+            //TIPO → real | inteiro | literal
             tk = Stack.top();
             global_type = tk.type;
             tk.lex = tk.lex_class = "TIPO";
             Stack.pop();
             Stack.push(tk);
-        }else if (state==13)
-        {
+        }else if (state==13){
             //ES → leia id pt_v
             Stack.pop();
             tk = Stack.top();
             Stack.pop();
             Stack.pop();
-            if(tk.type=="NULL")
-            {
+            if(tk.type=="NULL"){
                 valid = false;
                 std::cout<<"Semantic Error " << tk.lex<<" was not decleared at line "<<line<<", column "<<column<<'\n';
             }
-            if(generating)
-            {
+            if(generating){
                 output<<"scanf(";
                 if(tk.type == "real")
                     output<<"\"\%lf\",&"<<tk.lex;
@@ -112,15 +105,13 @@ public:
             }
             tk.lex = tk.lex_class = tk.type = "ES";
             Stack.push(tk);
-        }else if (state==14)
-        {
+        }else if (state==14){
             //ES -> escreva ARG pt_v
             Stack.pop();
             tk = Stack.top();
             Stack.pop();
             Stack.pop();
-            if(generating)
-            {
+            if(generating){
                 output<<"printf(";
                 if(tk.lex_class != "id")
                     output<<tk.lex;
@@ -134,25 +125,21 @@ public:
             }
             tk.lex = tk.lex_class = tk.type = "ES";
             Stack.push(tk);
-        }else if (state == 15 || state == 16)
-        {
+        }else if (state == 15 || state == 16){
             //ARG -> literal | num
             tk = Stack.top();
             Stack.pop();
             Stack.push(tk);
-        }else if (state == 17)
-        {
+        }else if (state == 17){
             //ARG -> id
             tk = Stack.top();
-            if(tk.type=="NULL")
-            {
+            if(tk.type=="NULL"){
                 valid = false;
                 std::cout<<"Semantic Error " << tk.lex<<" was not decleared at line "<<line<<", column "<<column<<'\n';
             }
             Stack.pop();
             Stack.push(tk);
-        }else if (state == 19)
-        {
+        }else if (state == 19){
             //CMD → id rcb LD pt_v
             Stack.pop();
             tk2 = Stack.top();
@@ -160,41 +147,33 @@ public:
             tk1 = Stack.top();
             Stack.pop();
             tk = Stack.top();
-            if(tk.type=="NULL")
-            {
+            if(tk.type=="NULL"){
                 valid = false;
                 std::cout<<"Semantic Error " << tk.lex<<" was not decleared at line "<<line<<", column "<<column<<'\n';
-            }else if(tk.type!=tk2.type)
-            {
+            }else if(tk.type!=tk2.type){
                 valid = false;
                 std::cout<<"Semantic Error atribution types doesnt match at line "<<line<<", column "<<column<<'\n';
             }
-            if(generating)
-            {
+            if(generating){
                 output<<tk.lex<<" = "<<tk2.lex<<";\n";
             }
             Stack.pop();
             tk.lex = tk.lex_class = tk.type = "CMD";
             Stack.push(tk);
-        }else if (state == 20)
-        {
+        }else if (state == 20){
             //LD → OPRD opm OPRD
             tk2 = Stack.top();
             Stack.pop();
             tk1 = Stack.top();
             Stack.pop();
             tk = Stack.top();
-            if(tk.type!=tk2.type || tk.type == "literal")
-            {
+            if(tk.type!=tk2.type || tk.type == "literal"){
                 valid = false;
                 std::cout<<"Semantic Error Operands does not match "<<line<<", column "<<column<<'\n';
-            }else if(tk.type!=tk2.type)
-            {
+            }else if(tk.type!=tk2.type){
                 valid = false;
                 std::cout<<"Semantic Error atribution types doesnt match at line "<<line<<", column "<<column<<'\n';
-            }
-            if(generating)
-            {
+            }if(generating){
                 output<<"t"<<temps<<" = "<<tk.lex<<" "<<tk1.lex<<" "<<tk2.lex<<";\n";
             }
             
@@ -204,75 +183,63 @@ public:
             tk.lex = "t"+std::to_string(temps);
             Stack.push(tk);
             temps++;
-        }else if (state == 21)
-        {
+        }else if (state == 21){
             //LD → OPRD
             tk = Stack.top();
             Stack.pop();
             tk.lex_class = "LD";
             Stack.push(tk);
-        }else if (state == 22)
-        {
+        }else if (state == 22){
             //OPRD → id
             tk = Stack.top();
             Stack.pop();
-            if(tk.type=="NULL")
-            {
+            if(tk.type=="NULL"){
                 valid = false;
                 std::cout<<"Semantic Error " << tk.lex<<" was not decleared at line "<<line<<", column "<<column<<'\n';
             }
             Stack.push(tk);
-        }else if (state == 23)
-        {
+        }else if (state == 23){
             //OPRD → num
             tk = Stack.top();
             Stack.pop();
             Stack.push(tk);
-        }else if (state == 25)
-        {
+        }else if (state == 25){
             //COND → CAB CP
-            for (int i = 0; i < 2; i++)
-                Stack.pop();
-            
-            if(generating){
+            Stack.pop();
+            Stack.pop();
+        
+            if(generating)
                 output<<"}\n";
-            }
 
             tk.lex = tk.lex_class = tk.type = "COND";
             Stack.push(tk);
-        }else if (state == 26)
-        {
+        }else if (state == 26){
             //CAB → se ab_p EXP_R fc_p entao
-            for (int i = 0; i < 2; i++)
-                Stack.pop();
+            Stack.pop();
+            Stack.pop();
             tk = Stack.top();
-            for (int i = 0; i < 3; i++)
-                Stack.pop();
-            
+            Stack.pop();
+            Stack.pop();
+            Stack.pop();
             if(generating)
                 output<<"if("<<tk.lex<<"){\n";
 
             tk.lex = tk.lex_class = tk.type = "CAB";
             Stack.push(tk);
-        }else if (state == 27)
-        {
+        }else if (state == 27){
             //EXP_R → OPRD opr OPRD
             tk2 = Stack.top();
             Stack.pop();
             tk1 = Stack.top();
             Stack.pop();
             tk = Stack.top();
-            if(tk.type!=tk2.type || tk.type == "literal")
-            {
+            if(tk.type!=tk2.type || tk.type == "literal"){
                 valid = false;
                 std::cout<<"Semantic Error Operands does not match "<<line<<", column "<<column<<'\n';
-            }else if(tk.type!=tk2.type)
-            {
+            }else if(tk.type!=tk2.type){
                 valid = false;
                 std::cout<<"Semantic Error atribution types doesnt match at line "<<line<<", column "<<column<<'\n';
-            }
-            if(generating)
-            {
+            }if(generating){
                 output<<"t"<<temps<<" = "<<tk.lex<<" "<<tk1.lex<<" "<<tk2.lex<<";\n";
                 global_exp_r = "t"+std::to_string(temps)+" = "+tk.lex+" "+tk1.lex+" "+tk2.lex+";\n";
             }
@@ -283,12 +250,10 @@ public:
             Stack.push(tk);
             temps++;
         }
-        else if (state == 33)
-        {
+        else if (state == 33){
             //R → CABR CPR
-            for (int i = 0; i < 2; i++)
-                Stack.pop();
-            
+            Stack.pop();
+            Stack.pop();
             if(generating){
                 output<<global_exp_r;
                 output<<"}\n";
@@ -296,20 +261,19 @@ public:
 
             tk.lex = tk.lex_class = tk.type = "R";
             Stack.push(tk);
-        }else if (state == 34)
-        {
+        }else if (state == 34){
             //CABR → repita ab_p EXP_R fc_p
             Stack.pop();
             tk = Stack.top();
-            for (int i = 0; i < 3; i++)
-                Stack.pop();
+            Stack.pop();
+            Stack.pop();
+            Stack.pop();
             if(generating)
                 output<<"while("<<tk.lex<<"){\n";
 
             tk.lex = tk.lex_class = tk.type = "CABR";
             Stack.push(tk);
-        }else
-        {
+        }else{
             for (int i = 0; i < dfa_syntax.sizeSTATE(state); i++)
                 Stack.pop();
             tk.lex = tk.lex_class = tk.type = dfa_syntax.initial(state);
